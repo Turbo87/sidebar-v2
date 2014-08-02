@@ -9,6 +9,8 @@ $width-xs: 100%;
 
 $tab-size: 40px;
 
+$tab-fg: #333;
+$tab-bg: rgba(0, 0, 0, 0.05);
 $tab-hover-fg: #000;
 $tab-hover-bg: #ddd;
 $tab-active-fg: #fff;
@@ -65,13 +67,13 @@ $tab-active-bg: #0074d9;
     margin: 0;
     padding: 0;
 
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: $tab-bg;
 
     & > li {
         width: 100%;
         height: $tab-size;
 
-        color: #333;
+        color: $tab-fg;
         background: transparent;
 
         overflow: hidden;
