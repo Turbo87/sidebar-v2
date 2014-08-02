@@ -132,3 +132,11 @@ $tab-active-bg: #0074d9;
         display: block;
     }
 }
+
+.sidebar-map {
+    left: $tab-size;
+
+    @media(min-width:$threshold-sm) {
+        left: 0;
+    }
+}

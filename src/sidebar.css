@@ -72,3 +72,9 @@
   padding: 10px 20px; }
   .sidebar-pane.active {
     display: block; }
+
+.sidebar-map {
+  left: 40px; }
+  @media (min-width: 768px) {
+    .sidebar-map {
+      left: 0; } }
