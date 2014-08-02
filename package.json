@@ -1,0 +1,19 @@
+{
+  "name": "sidebar-v2",
+  "version": "2.0.0",
+  "description": "A responsive sidebar for mapping libraries like Leaflet or OpenLayers",
+  "keywords": [
+    "gis",
+    "leaflet",
+    "openlayers",
+    "map"
+  ],
+  "homepage": "https://github.com/turbo87/sidebar-v2",
+  "bugs": "https://github.com/turbo87/sidebar-v2/issues",
+  "license": "MIT",
+  "author": "Tobias Bieniek <tobias.bieniek@gmx.de>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turbo87/sidebar-v2.git"
+  }
+}
