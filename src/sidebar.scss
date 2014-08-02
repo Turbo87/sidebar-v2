@@ -7,6 +7,9 @@ $width-md: 390px;
 $width-sm: 305px;
 $width-xs: 100%;
 
+$sidebar-bg: rgba(255, 255, 255, 0.95);
+$sidebar-transition: 500ms;
+
 $tab-size: 40px;
 
 $tab-fg: #333;
@@ -24,13 +27,13 @@ $tab-active-bg: #0074d9;
     bottom: 0;
     width: $width-xs;
 
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: $sidebar-bg;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
     overflow: hidden;
 
     z-index: 2000;
 
-    transition: width 500ms;
+    transition: width $sidebar-transition;
 
     &.collapsed {
         width: $tab-size;
