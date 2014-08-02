@@ -13,9 +13,9 @@
     width: 40px; }
   @media (min-width: 768px) {
     .sidebar {
-      left: 20px;
-      top: 20px;
-      bottom: 20px; } }
+      left: 10px;
+      top: 10px;
+      bottom: 10px; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
       width: 305px; } }

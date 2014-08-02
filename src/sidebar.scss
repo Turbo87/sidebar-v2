@@ -7,6 +7,7 @@ $width-md: 390px;
 $width-sm: 305px;
 $width-xs: 100%;
 
+$sidebar-margins: 10px;
 $sidebar-bg: rgba(255, 255, 255, 0.95);
 $sidebar-transition: 500ms;
 
@@ -40,9 +41,9 @@ $tab-active-bg: #0074d9;
     }
 
     @media(min-width:$threshold-sm) {
-        left: 20px;
-        top: 20px;
-        bottom: 20px;
+        left: $sidebar-margins;
+        top: $sidebar-margins;
+        bottom: $sidebar-margins;
     }
 
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
