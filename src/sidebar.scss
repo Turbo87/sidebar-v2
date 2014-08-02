@@ -28,7 +28,7 @@ $tab-active-bg: #0074d9;
 
     z-index: 2000;
 
-    transition: width 3000ms;
+    transition: width 500ms;
 
     &.collapsed {
         width: $tab-size;
