@@ -1,0 +1,129 @@
+$threshold-lg: 1200px;
+$threshold-md: 992px;
+$threshold-sm: 768px;
+
+$width-lg: 460px;
+$width-md: 390px;
+$width-sm: 305px;
+$width-xs: 100%;
+
+$tab-size: 40px;
+
+$tab-hover-fg: #000;
+$tab-hover-bg: #ddd;
+$tab-active-fg: #fff;
+$tab-active-bg: #0074d9;
+
+.sidebar {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $width-xs;
+
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+
+    z-index: 2000;
+
+    transition: width 3000ms;
+
+    &.collapsed {
+        width: $tab-size;
+    }
+
+    @media(min-width:$threshold-sm) {
+        left: 20px;
+        top: 20px;
+        bottom: 20px;
+    }
+
+    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+        width: $width-sm;
+    }
+
+    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+        width: $width-md;
+    }
+
+    @media(min-width:$threshold-lg) {
+        width: $width-lg;
+    }
+}
+
+.sidebar-tabs {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: $tab-size;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: rgba(0, 0, 0, 0.05);
+
+    & > li {
+        width: 100%;
+        height: $tab-size;
+
+        color: #333;
+        background: transparent;
+
+        overflow: hidden;
+
+        transition: all 80ms;
+
+        &:hover {
+            color: $tab-hover-fg;
+            background-color: $tab-hover-bg;
+        }
+
+        &.active {
+            color: $tab-active-fg;
+            background-color: $tab-active-bg;
+        }
+
+        & > a {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            line-height: $tab-size;
+
+            color: inherit;
+            text-decoration: none;
+            text-align: center;
+        }
+    }
+}
+
+.sidebar-content {
+    position: absolute;
+
+    left: $tab-size;
+    right: 0;
+
+    top: 0;
+    bottom: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar-pane {
+    display: none;
+
+    right: 0;
+
+    padding: 10px 20px;
+
+    &.active {
+        display: block;
+    }
+}
