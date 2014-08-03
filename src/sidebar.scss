@@ -33,8 +33,6 @@ $tab-active-bg: #0074d9;
 
     z-index: 2000;
 
-    transition: width $sidebar-transition;
-
     &.collapsed {
         width: $tab-size;
     }
@@ -43,6 +41,8 @@ $tab-active-bg: #0074d9;
         left: $sidebar-margins;
         top: $sidebar-margins;
         bottom: $sidebar-margins;
+
+        transition: width $sidebar-transition;
     }
 
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
@@ -127,11 +127,24 @@ $tab-active-bg: #0074d9;
     display: none;
 
     right: 0;
+    box-sizing: border-box;
 
     padding: 10px 20px;
 
     &.active {
         display: block;
+    }
+
+    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+        width: $width-sm - $tab-size;
+    }
+
+    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+        width: $width-md - $tab-size;
+    }
+
+    @media(min-width:$threshold-lg) {
+        width: $width-lg - $tab-size;
     }
 }
 
