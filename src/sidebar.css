@@ -80,13 +80,14 @@
       margin-left: 0; } }
 
 .leaflet-sidebar {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px; }
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65); }
   @media (min-width: 768px) {
-    .leaflet-sidebar ~ .sidebar-map .leaflet-left {
-      transition: left 500ms; }
-    .leaflet-sidebar.collapsed ~ .sidebar-map .leaflet-left {
-      left: 50px; } }
+    .leaflet-sidebar {
+      border-radius: 4px; }
+      .leaflet-sidebar ~ .sidebar-map .leaflet-left {
+        transition: left 500ms; }
+      .leaflet-sidebar.collapsed ~ .sidebar-map .leaflet-left {
+        left: 50px; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .leaflet-sidebar ~ .sidebar-map .leaflet-left {
       left: 315px; } }
