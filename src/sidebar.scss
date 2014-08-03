@@ -146,8 +146,17 @@ $tab-active-bg: #0074d9;
 .leaflet-sidebar {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 
+    &.leaflet-touch {
+        box-shadow: none;
+        border-right: 2px solid rgba(0, 0, 0, 0.2);
+    }
+
     @media(min-width:$threshold-sm) {
         border-radius: 4px;
+
+        &.leaflet-touch {
+            border: 2px solid rgba(0, 0, 0, 0.2);
+        }
 
         & ~ .sidebar-map .leaflet-left {
             transition: left $sidebar-transition;

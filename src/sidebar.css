@@ -81,9 +81,14 @@
 
 .leaflet-sidebar {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65); }
+  .leaflet-sidebar.leaflet-touch {
+    box-shadow: none;
+    border-right: 2px solid rgba(0, 0, 0, 0.2); }
   @media (min-width: 768px) {
     .leaflet-sidebar {
       border-radius: 4px; }
+      .leaflet-sidebar.leaflet-touch {
+        border: 2px solid rgba(0, 0, 0, 0.2); }
       .leaflet-sidebar ~ .sidebar-map .leaflet-left {
         transition: left 500ms; }
       .leaflet-sidebar.collapsed ~ .sidebar-map .leaflet-left {
