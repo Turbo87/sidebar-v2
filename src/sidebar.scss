@@ -44,18 +44,38 @@ $tab-active-bg: #0074d9;
         left: $sidebar-margins;
         top: $sidebar-margins;
         bottom: $sidebar-margins;
+
+        & ~ .sidebar-map .leaflet-left {
+            transition: left $sidebar-transition;
+        }
+
+        &.collapsed ~ .sidebar-map .leaflet-left {
+            left: $tab-size + $sidebar-margins;
+        }
     }
 
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
         width: $width-sm;
+
+        & ~ .sidebar-map .leaflet-left {
+            left: $width-sm + $sidebar-margins;
+        }
     }
 
     @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
         width: $width-md;
+
+        & ~ .sidebar-map .leaflet-left {
+            left: $width-md + $sidebar-margins;
+        }
     }
 
     @media(min-width:$threshold-lg) {
         width: $width-lg;
+
+        & ~ .sidebar-map .leaflet-left {
+            left: $width-lg + $sidebar-margins;
+        }
     }
 }
 
