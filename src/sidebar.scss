@@ -155,9 +155,9 @@ $tab-active-bg: #0074d9;
 }
 
 .sidebar-map {
-    left: $tab-size;
+    margin-left: $tab-size;
 
     @media(min-width:$threshold-sm) {
-        left: 0;
+        margin-left: 0;
     }
 }
