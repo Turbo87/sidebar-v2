@@ -15,26 +15,16 @@
     .sidebar {
       left: 10px;
       top: 10px;
-      bottom: 10px; }
-      .sidebar ~ .sidebar-map .leaflet-left {
-        transition: left 500ms; }
-      .sidebar.collapsed ~ .sidebar-map .leaflet-left {
-        left: 50px; } }
+      bottom: 10px; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
-      width: 305px; }
-      .sidebar ~ .sidebar-map .leaflet-left {
-        left: 315px; } }
+      width: 305px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
-      width: 390px; }
-      .sidebar ~ .sidebar-map .leaflet-left {
-        left: 400px; } }
+      width: 390px; } }
   @media (min-width: 1200px) {
     .sidebar {
-      width: 460px; }
-      .sidebar ~ .sidebar-map .leaflet-left {
-        left: 470px; } }
+      width: 460px; } }
 
 .sidebar-tabs {
   position: absolute;
@@ -88,3 +78,18 @@
   @media (min-width: 768px) {
     .sidebar-map {
       margin-left: 0; } }
+
+@media (min-width: 768px) {
+  .leaflet-sidebar ~ .sidebar-map .leaflet-left {
+    transition: left 500ms; }
+  .leaflet-sidebar.collapsed ~ .sidebar-map .leaflet-left {
+    left: 50px; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .leaflet-sidebar ~ .sidebar-map .leaflet-left {
+    left: 315px; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .leaflet-sidebar ~ .sidebar-map .leaflet-left {
+    left: 400px; } }
+@media (min-width: 1200px) {
+  .leaflet-sidebar ~ .sidebar-map .leaflet-left {
+    left: 470px; } }
