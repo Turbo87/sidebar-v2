@@ -2,11 +2,13 @@ $sidebar-margins: 6px;
 $border-width: 3px;
 
 $tab-fg: #fff;
-$tab-bg: rgba(0, 60, 136, 0.8);
+$tab-bg: rgba(0, 60, 136, 0.5);
 $tab-hover-fg: #fff;
 $tab-hover-bg: rgba(0, 60, 136, 0.6);
 $tab-active-fg: #fff;
 $tab-active-bg: #0074d9;
+
+$move-map-in-xs: false;
 
 @import 'base';
 
@@ -28,7 +30,7 @@ $tab-active-bg: #0074d9;
 }
 
 .sidebar-map .ol-zoom {
-    margin-left: $border-width * 2;
+    margin-left: $tab-size + $border-width * 2;
 
     @media(min-width:$threshold-sm) {
         transition: margin-left $sidebar-transition;
@@ -46,11 +48,3 @@ $tab-active-bg: #0074d9;
         margin-left: $width-lg + $sidebar-margins + $border-width * 2;
     }
 }
-
-
-.sidebar-tabs {
-    @media(min-width:$threshold-sm) {
-        background-color: rgba(0, 60, 136, 0.5);
-    }
-}
-

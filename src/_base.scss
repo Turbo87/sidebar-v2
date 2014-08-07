@@ -12,6 +12,8 @@ $sidebar-transition: 500ms;
 
 $tab-size: 40px;
 
+$move-map-in-xs: true !default;
+
 .sidebar {
     position: absolute;
 
@@ -142,10 +144,12 @@ $tab-size: 40px;
     }
 }
 
-.sidebar-map {
-    margin-left: $tab-size;
+@if $move-map-in-xs {
+    .sidebar-map {
+        margin-left: $tab-size;
 
-    @media(min-width:$threshold-sm) {
-        margin-left: 0;
+        @media(min-width:$threshold-sm) {
+            margin-left: 0;
+        }
     }
 }
