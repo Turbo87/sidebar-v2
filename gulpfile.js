@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-var concat = require('gulp-concat');
 var csslint = require('gulp-csslint');
 var header = require('gulp-header');
 var jshint = require('gulp-jshint');
@@ -43,38 +42,23 @@ gulp.task('lint:css', ['sass'], function() {
     .pipe(csslint.reporter());
 });
 
-// Concat JS + CSS
-gulp.task('concat', ['concat:js', 'concat:css']);
-
-gulp.task('concat:js', function() {
-  return gulp.src('src/*.js')
-    .pipe(concat(basename +'.js'))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('concat:css', ['sass'], function() {
-  return gulp.src('src/*.css')
-    .pipe(concat(basename +'.css'))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest('dist'));
-});
-
 // Minify JS + CSS
 gulp.task('minify', ['minify:js', 'minify:css']);
 
-gulp.task('minify:js', ['concat:js'], function() {
-  return gulp.src('dist/' + basename + '.js')
-    .pipe(rename(basename + '.min.js'))
+gulp.task('minify:js', function() {
+  return gulp.src('src/*.js')
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(header(banner, { pkg : pkg } ))
     .pipe(uglify({
       preserveComments: 'some'
     }))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('minify:css', ['concat:css'], function() {
-  return gulp.src('dist/' + basename + '.css')
-    .pipe(rename(basename + '.min.css'))
+gulp.task('minify:css', ['sass'], function() {
+  return gulp.src('src/*.css')
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(header(banner, { pkg : pkg } ))
     .pipe(minifyCSS())
     .pipe(gulp.dest('dist'));
 });
@@ -84,10 +68,8 @@ gulp.task('zip', ['minify'], function() {
   return gulp.src([
     'README.md',
     'LICENSE',
-    'dist/' + basename + '.js',
-    'dist/' + basename + '.min.js',
-    'dist/' + basename + '.css',
-    'dist/' + basename + '.min.css',
+    'dist/*-sidebar.min.css',
+    'dist/*-sidebar.min.js',
   ])
   .pipe(rename(function (path) {
     path.dirname = '';
