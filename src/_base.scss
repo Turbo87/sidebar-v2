@@ -7,7 +7,7 @@ $width-md: 390px;
 $width-sm: 305px;
 $width-xs: 100%;
 
-$sidebar-bg: rgba(255, 255, 255, 0.95);
+$content-bg: rgba(255, 255, 255, 0.95);
 $sidebar-transition: 500ms;
 
 $tab-size: 40px;
@@ -112,7 +112,7 @@ $move-map-in-xs: true !default;
     top: 0;
     bottom: 0;
 
-    background-color: $sidebar-bg;
+    background-color: $content-bg;
 
     overflow-x: hidden;
     overflow-y: auto;
