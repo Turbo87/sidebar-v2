@@ -1,0 +1,50 @@
+$sidebar-margins: 15px;
+$sidebar-bottom-margin: 35px;
+$sidebar-border: 1pt solid rgba(127, 127, 127, 0.3);
+$sidebar-border-radius: 4px;
+$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2);
+$sidebar-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.35);
+
+$tab-fg: #666;
+$tabs-bg: #fff;
+$tab-active-fg: #000;
+$tab-active-bg: #febf00;
+$tab-hover-fg: #000;
+$tab-hover-bg: ($tabs-bg * 9 + $tab-active-bg) / 10;
+
+@import 'base';
+
+.sidebar {
+    border-right: $sidebar-border;
+    box-shadow: $sidebar-shadow;
+
+    @media(min-width:$threshold-sm) {
+        border: $sidebar-border;
+        border-radius: $sidebar-border-radius;
+
+        bottom: $sidebar-bottom-margin;
+
+        &.collapsed ~ .sidebar-map .gm-style div[controlheight="308"] {
+            margin-left: $tab-size + $sidebar-margins !important;
+        }
+    }
+
+}
+
+.sidebar-map .gm-style div[controlheight="308"] {
+    @media(min-width:$threshold-sm) {
+        transition: margin-left $sidebar-transition;
+    }
+
+    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+        margin-left: $width-sm + $sidebar-margins !important;
+    }
+
+    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+        margin-left: $width-md + $sidebar-margins !important;
+    }
+
+    @media(min-width:$threshold-lg) {
+        margin-left: $width-lg + $sidebar-margins !important;
+    }
+}

@@ -37,7 +37,8 @@ gulp.task('lint:css', ['sass'], function() {
     .pipe(csslint({
       'adjoining-classes': false,
       'box-sizing': false,
-      'fallback-colors': false
+      'fallback-colors': false,
+      'important': false,
     }))
     .pipe(csslint.reporter());
 });
