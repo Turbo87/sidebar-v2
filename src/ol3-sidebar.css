@@ -84,12 +84,12 @@
       width: 420px; } }
 
 .sidebar {
-  border-right: 3px solid rgba(255, 255, 255, 0.4); }
+  background-color: rgba(255, 255, 255, 0.4);
+  border-right: 3px solid transparent; }
   @media (min-width: 768px) {
     .sidebar {
-      background-color: rgba(255, 255, 255, 0.4);
-      border-radius: 4px;
-      border: 3px solid transparent; }
+      border: 3px solid transparent;
+      border-radius: 4px; }
       .sidebar.collapsed ~ .sidebar-map .ol-zoom {
         margin-left: 52px; } }
 

@@ -13,14 +13,12 @@ $move-map-in-xs: false;
 @import 'base';
 
 .sidebar {
-    border-right: $border-width solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
+    border-right: $border-width solid transparent;
 
     @media(min-width:$threshold-sm) {
-        background-color: rgba(255, 255, 255, 0.4);
-
-        border-radius: 4px;
-
         border: $border-width solid transparent;
+        border-radius: 4px;
 
         &.collapsed ~ .sidebar-map .ol-zoom {
             margin-left: $tab-size + $sidebar-margins + $border-width * 2;
