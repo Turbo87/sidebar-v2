@@ -13,7 +13,6 @@ $move-map-in-xs: false;
 @import 'base';
 
 .sidebar {
-    box-shadow: none;
     border-right: $border-width solid rgba(255, 255, 255, 0.4);
 
     @media(min-width:$threshold-sm) {
