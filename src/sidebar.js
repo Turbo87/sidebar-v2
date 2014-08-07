@@ -31,6 +31,8 @@ $('.sidebar-tabs > li > a').on('click', function(e) {
 });
 
 $(function () {
-    if (L !== undefined && L.Browser !== undefined && L.Browser.touch)
+    if (typeof(L) != 'undefined' &&
+        typeof(L.Browser) != 'undefined' &&
+        L.Browser.touch)
         $('.sidebar').addClass('leaflet-touch');
 });
