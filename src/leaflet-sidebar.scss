@@ -1,7 +1,10 @@
 $sidebar-margins: 10px;
+$sidebar-border-radius: 4px;
+$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2);
+$sidebar-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 
 $tab-fg: #333;
-$tab-bg: #fff;
+$tabs-bg: #fff;
 $tab-hover-fg: #000;
 $tab-hover-bg: #eee;
 $tab-active-fg: #fff;
@@ -10,18 +13,18 @@ $tab-active-bg: #0074d9;
 @import 'base';
 
 .sidebar {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    box-shadow: $sidebar-shadow;
 
     &.leaflet-touch {
         box-shadow: none;
-        border-right: 2px solid rgba(0, 0, 0, 0.2);
+        border-right: $sidebar-touch-border;
     }
 
     @media(min-width:$threshold-sm) {
-        border-radius: 4px;
+        border-radius: $sidebar-border-radius;
 
         &.leaflet-touch {
-            border: 2px solid rgba(0, 0, 0, 0.2);
+            border: $sidebar-touch-border;
         }
 
         &.collapsed ~ .sidebar-map .leaflet-left {

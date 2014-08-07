@@ -7,10 +7,16 @@ $width-md: 390px;
 $width-sm: 305px;
 $width-xs: 100%;
 
-$content-bg: rgba(255, 255, 255, 0.95);
-$sidebar-transition: 500ms;
+$sidebar-z-index: 2000 !default;
+$sidebar-transition: 500ms !default;
 
-$tab-size: 40px;
+$tab-size: 40px !default;
+$tab-font-size: 12pt !default;
+$tab-bg: null !default;
+$tab-transition: 80ms !default;
+
+$content-bg: rgba(255, 255, 255, 0.95) !default;
+$content-padding: 10px 20px !default;
 
 $move-map-in-xs: true !default;
 
@@ -24,7 +30,7 @@ $move-map-in-xs: true !default;
 
     overflow: hidden;
 
-    z-index: 2000;
+    z-index: $sidebar-z-index;
 
     &.collapsed {
         width: $tab-size;
@@ -63,20 +69,20 @@ $move-map-in-xs: true !default;
     margin: 0;
     padding: 0;
 
-    background-color: $tab-bg;
+    background-color: $tabs-bg;
 
     & > li {
         width: 100%;
         height: $tab-size;
 
         color: $tab-fg;
-        background: transparent;
+        @if $tab-bg { background: $tab-bg; }
 
-        font-size: 12pt;
+        font-size: $tab-font-size;
 
         overflow: hidden;
 
-        transition: all 80ms;
+        transition: all $tab-transition;
 
         &:hover {
             color: $tab-hover-fg;
@@ -124,7 +130,7 @@ $move-map-in-xs: true !default;
     right: 0;
     box-sizing: border-box;
 
-    padding: 10px 20px;
+    padding: $content-padding;
 
     &.active {
         display: block;

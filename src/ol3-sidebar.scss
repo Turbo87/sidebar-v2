@@ -1,8 +1,11 @@
 $sidebar-margins: 6px;
-$border-width: 3px;
+$sidebar-bg: rgba(255, 255, 255, 0.4);
+$sidebar-border-width: 3px;
+$sidebar-border-radius: 4px;
+$sidebar-border: $sidebar-border-width solid transparent;
 
 $tab-fg: #fff;
-$tab-bg: rgba(0, 60, 136, 0.5);
+$tabs-bg: rgba(0, 60, 136, 0.5);
 $tab-hover-fg: #fff;
 $tab-hover-bg: rgba(0, 60, 136, 0.6);
 $tab-active-fg: #fff;
@@ -13,35 +16,35 @@ $move-map-in-xs: false;
 @import 'base';
 
 .sidebar {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-right: $border-width solid transparent;
+    background-color: $sidebar-bg;
+    border-right: $sidebar-border;
 
     @media(min-width:$threshold-sm) {
-        border: $border-width solid transparent;
-        border-radius: 4px;
+        border: $sidebar-border;
+        border-radius: $sidebar-border-radius;
 
         &.collapsed ~ .sidebar-map .ol-zoom {
-            margin-left: $tab-size + $sidebar-margins + $border-width * 2;
+            margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
         }
     }
 }
 
 .sidebar-map .ol-zoom {
-    margin-left: $tab-size + $border-width * 2;
+    margin-left: $tab-size + $sidebar-border-width * 2;
 
     @media(min-width:$threshold-sm) {
         transition: margin-left $sidebar-transition;
     }
 
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        margin-left: $width-sm + $sidebar-margins + $border-width * 2;
+        margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
     }
 
     @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        margin-left: $width-md + $sidebar-margins + $border-width * 2;
+        margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
     }
 
     @media(min-width:$threshold-lg) {
-        margin-left: $width-lg + $sidebar-margins + $border-width * 2;
+        margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
     }
 }
