@@ -1,5 +1,12 @@
 $sidebar-margins: 10px;
 
+$tab-fg: #333;
+$tab-bg: #fff;
+$tab-hover-fg: #000;
+$tab-hover-bg: #eee;
+$tab-active-fg: #fff;
+$tab-active-bg: #0074d9;
+
 @import 'sidebar';
 
 .sidebar {

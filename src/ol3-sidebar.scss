@@ -1,6 +1,13 @@
 $sidebar-margins: 6px;
 $border-width: 3px;
 
+$tab-fg: #fff;
+$tab-bg: rgba(0, 60, 136, 0.8);
+$tab-hover-fg: #fff;
+$tab-hover-bg: rgba(0, 60, 136, 0.6);
+$tab-active-fg: #fff;
+$tab-active-bg: #0074d9;
+
 @import 'sidebar';
 
 .sidebar {
@@ -42,24 +49,8 @@ $border-width: 3px;
 
 
 .sidebar-tabs {
-    background-color: rgba(0, 60, 136, 0.8);
-
     @media(min-width:$threshold-sm) {
         background-color: rgba(0, 60, 136, 0.5);
-    }
-
-    & > li {
-        color: #fff;
-
-        &:hover {
-            color: #fff;
-            background-color: rgba(0, 60, 136, 0.6);
-        }
-
-        &.active {
-            color: #fff;
-            background-color: $tab-active-bg;
-        }
     }
 }
 
