@@ -1,17 +1,13 @@
-@import 'sidebar';
-
 $sidebar-margins: 6px;
 $border-width: 3px;
+
+@import 'sidebar';
 
 .sidebar {
     box-shadow: none;
     border-right: $border-width solid rgba(255, 255, 255, 0.4);
 
     @media(min-width:$threshold-sm) {
-        left: $sidebar-margins;
-        top: $sidebar-margins;
-        bottom: $sidebar-margins;
-
         background-color: rgba(255, 255, 255, 0.4);
 
         border-radius: 4px;
