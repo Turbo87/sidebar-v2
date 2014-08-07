@@ -16,7 +16,7 @@ var banner = '/*! ${pkg.name} v${pkg.version} */\n\n';
 
 // SASS compilation
 gulp.task('sass', function () {
-    gulp.src('src/*.scss')
+    gulp.src('src/*-sidebar.scss')
         .pipe(sass({
           includePaths: require('node-bourbon').includePaths
         }))
