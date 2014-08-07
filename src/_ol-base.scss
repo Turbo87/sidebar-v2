@@ -23,3 +23,17 @@ $move-map-in-xs: false;
         border-radius: $sidebar-border-radius;
     }
 }
+
+.sidebar-tabs {
+    overflow: hidden;
+    border-radius: $sidebar-inner-border-radius 0 0 $sidebar-inner-border-radius;
+
+    .collapsed & {
+        border-radius: $sidebar-inner-border-radius;
+    }
+}
+
+.sidebar-content {
+    overflow: hidden;
+    border-radius: 0 $sidebar-inner-border-radius $sidebar-inner-border-radius 0;
+}
