@@ -90,42 +90,45 @@
     .sidebar-map {
       margin-left: 0; } }
 
-.ol3-sidebar {
+.sidebar {
   box-shadow: none;
   border-right: 3px solid rgba(255, 255, 255, 0.4); }
-  .ol3-sidebar .sidebar-tabs {
-    background-color: rgba(0, 60, 136, 0.8); }
-    @media (min-width: 768px) {
-      .ol3-sidebar .sidebar-tabs {
-        background-color: rgba(0, 60, 136, 0.5); } }
-    .ol3-sidebar .sidebar-tabs > li {
-      color: #fff; }
-      .ol3-sidebar .sidebar-tabs > li:hover {
-        color: #fff;
-        background-color: rgba(0, 60, 136, 0.6); }
-      .ol3-sidebar .sidebar-tabs > li.active {
-        color: #fff;
-        background-color: #0074d9; }
-  .ol3-sidebar ~ .sidebar-map .ol-zoom {
-    margin-left: 6px; }
   @media (min-width: 768px) {
-    .ol3-sidebar {
+    .sidebar {
       left: 6px;
       top: 6px;
       bottom: 6px;
       background-color: rgba(255, 255, 255, 0.4);
       border-radius: 4px;
       border: 3px solid transparent; }
-      .ol3-sidebar ~ .sidebar-map .ol-zoom {
-        transition: margin-left 500ms; }
-      .ol3-sidebar.collapsed ~ .sidebar-map .ol-zoom {
+      .sidebar.collapsed ~ .sidebar-map .ol-zoom {
         margin-left: 52px; } }
+
+.sidebar-map .ol-zoom {
+  margin-left: 6px; }
+  @media (min-width: 768px) {
+    .sidebar-map .ol-zoom {
+      transition: margin-left 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
-    .ol3-sidebar ~ .sidebar-map .ol-zoom {
+    .sidebar-map .ol-zoom {
       margin-left: 317px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
-    .ol3-sidebar ~ .sidebar-map .ol-zoom {
+    .sidebar-map .ol-zoom {
       margin-left: 402px; } }
   @media (min-width: 1200px) {
-    .ol3-sidebar ~ .sidebar-map .ol-zoom {
+    .sidebar-map .ol-zoom {
       margin-left: 472px; } }
+
+.sidebar-tabs {
+  background-color: rgba(0, 60, 136, 0.8); }
+  @media (min-width: 768px) {
+    .sidebar-tabs {
+      background-color: rgba(0, 60, 136, 0.5); } }
+  .sidebar-tabs > li {
+    color: #fff; }
+    .sidebar-tabs > li:hover {
+      color: #fff;
+      background-color: rgba(0, 60, 136, 0.6); }
+    .sidebar-tabs > li.active {
+      color: #fff;
+      background-color: #0074d9; }

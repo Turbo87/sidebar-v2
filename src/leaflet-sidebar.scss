@@ -1,6 +1,6 @@
 @import 'sidebar';
 
-.leaflet-sidebar {
+.sidebar {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 
     &.leaflet-touch {
@@ -15,30 +15,27 @@
             border: 2px solid rgba(0, 0, 0, 0.2);
         }
 
-        & ~ .sidebar-map .leaflet-left {
-            transition: left $sidebar-transition;
-        }
-
         &.collapsed ~ .sidebar-map .leaflet-left {
             left: $tab-size + $sidebar-margins;
         }
     }
 
+}
+
+.sidebar-map .leaflet-left {
+    @media(min-width:$threshold-sm) {
+        transition: left $sidebar-transition;
+    }
+
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        & ~ .sidebar-map .leaflet-left {
-            left: $width-sm + $sidebar-margins;
-        }
+        left: $width-sm + $sidebar-margins;
     }
 
     @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        & ~ .sidebar-map .leaflet-left {
-            left: $width-md + $sidebar-margins;
-        }
+        left: $width-md + $sidebar-margins;
     }
 
     @media(min-width:$threshold-lg) {
-        & ~ .sidebar-map .leaflet-left {
-            left: $width-lg + $sidebar-margins;
-        }
+        left: $width-lg + $sidebar-margins;
     }
 }
