@@ -1,16 +1,16 @@
-$sidebar-margins: 6px;
+$sidebar-margins: 8px;
 
 @import 'ol-base';
 
 .sidebar {
     @media(min-width:$threshold-sm) {
-        &.collapsed ~ .sidebar-map .ol-zoom {
+        &.collapsed ~ .sidebar-map .olControlZoom {
             margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
         }
     }
 }
 
-.sidebar-map .ol-zoom {
+.sidebar-map .olControlZoom {
     margin-left: $tab-size + $sidebar-border-width * 2;
 
     @media(min-width:$threshold-sm) {

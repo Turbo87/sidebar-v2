@@ -1,0 +1,25 @@
+$sidebar-bg: rgba(255, 255, 255, 0.4);
+$sidebar-border-width: 3px;
+$sidebar-border-radius: 4px;
+$sidebar-border: $sidebar-border-width solid transparent;
+
+$tab-fg: #fff;
+$tabs-bg: rgba(0, 60, 136, 0.5);
+$tab-hover-fg: #fff;
+$tab-hover-bg: rgba(0, 60, 136, 0.6);
+$tab-active-fg: #fff;
+$tab-active-bg: #0074d9;
+
+$move-map-in-xs: false;
+
+@import 'base';
+
+.sidebar {
+    background-color: $sidebar-bg;
+    border-right: $sidebar-border;
+
+    @media(min-width:$threshold-sm) {
+        border: $sidebar-border;
+        border-radius: $sidebar-border-radius;
+    }
+}

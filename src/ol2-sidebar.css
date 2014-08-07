@@ -10,9 +10,9 @@
     width: 40px; }
   @media (min-width: 768px) {
     .sidebar {
-      left: 6px;
-      top: 6px;
-      bottom: 6px;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
@@ -91,20 +91,20 @@
       border-radius: 4px; } }
 
 @media (min-width: 768px) {
-  .sidebar.collapsed ~ .sidebar-map .ol-zoom {
-    margin-left: 52px; } }
+  .sidebar.collapsed ~ .sidebar-map .olControlZoom {
+    margin-left: 54px; } }
 
-.sidebar-map .ol-zoom {
+.sidebar-map .olControlZoom {
   margin-left: 46px; }
   @media (min-width: 768px) {
-    .sidebar-map .ol-zoom {
+    .sidebar-map .olControlZoom {
       transition: margin-left 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
-    .sidebar-map .ol-zoom {
-      margin-left: 317px; } }
+    .sidebar-map .olControlZoom {
+      margin-left: 319px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
-    .sidebar-map .ol-zoom {
-      margin-left: 402px; } }
+    .sidebar-map .olControlZoom {
+      margin-left: 404px; } }
   @media (min-width: 1200px) {
-    .sidebar-map .ol-zoom {
-      margin-left: 472px; } }
+    .sidebar-map .olControlZoom {
+      margin-left: 474px; } }
