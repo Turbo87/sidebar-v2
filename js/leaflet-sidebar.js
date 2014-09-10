@@ -67,20 +67,24 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    close: function() {
+        // remove old active highlights
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // close sidebar
+        L.DomUtil.addClass(this._sidebar, 'collapsed');
+    },
+
     _onClick: function(e) {
         var i, child, tab = this;
         var _this = tab._sidebar;
 
         if (L.DomUtil.hasClass(tab, 'active')) {
-            // remove old active highlights
-            for (i = _this._tabitems.length - 1; i >= 0; i--) {
-                child = _this._tabitems[i];
-                if (L.DomUtil.hasClass(child, 'active'))
-                    L.DomUtil.removeClass(child, 'active');
-            }
-
-            // close sidebar
-            L.DomUtil.addClass(_this._sidebar, 'collapsed');
+            _this.close();
 
         } else {
             // hide old active contents and show new content
