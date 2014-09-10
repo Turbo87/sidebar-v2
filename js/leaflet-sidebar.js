@@ -93,9 +93,13 @@ L.Control.Sidebar = L.Control.extend({
                 L.DomUtil.removeClass(child, 'active');
         }
 
+        this.fire('content', { id: id });
+
         // open sidebar (if necessary)
-        if (L.DomUtil.hasClass(this._sidebar, 'collapsed'))
+        if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('opening');
             L.DomUtil.removeClass(this._sidebar, 'collapsed');
+        }
     },
 
     close: function() {
@@ -107,7 +111,10 @@ L.Control.Sidebar = L.Control.extend({
         }
 
         // close sidebar
-        L.DomUtil.addClass(this._sidebar, 'collapsed');
+        if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('closing');
+            L.DomUtil.addClass(this._sidebar, 'collapsed');
+        }
     },
 
     _onClick: function(e) {
