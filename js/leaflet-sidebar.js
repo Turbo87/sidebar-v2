@@ -29,3 +29,8 @@ $('.sidebar-tabs > li > a').on('click', function(e) {
             $sidebar.removeClass('collapsed');
     }
 });
+
+$(function () {
+    if (L.Browser.touch)
+        $('.sidebar').addClass('leaflet-touch');
+});
