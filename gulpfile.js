@@ -15,7 +15,8 @@ var basename = pkg.name + '-' + pkg.version;
 gulp.task('sass', function () {
     gulp.src('scss/*sidebar.scss')
         .pipe(sass({
-          includePaths: require('node-bourbon').includePaths
+          includePaths: require('node-bourbon').includePaths,
+          sourceComments: 'map'
         }))
         .pipe(gulp.dest('css'));
 });
