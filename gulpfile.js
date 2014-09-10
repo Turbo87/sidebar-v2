@@ -15,24 +15,24 @@ var banner = '/*! ${pkg.name} v${pkg.version} */\n\n';
 
 // SASS compilation
 gulp.task('sass', function () {
-    gulp.src('src/*-sidebar.scss')
+    gulp.src('scss/*sidebar.scss')
         .pipe(sass({
           includePaths: require('node-bourbon').includePaths
         }))
-        .pipe(gulp.dest('src'));
+        .pipe(gulp.dest('css'));
 });
 
 // Lint JS + CSS
 gulp.task('lint', ['lint:js', 'lint:css']);
 
 gulp.task('lint:js', function() {
-  return gulp.src('src/*.js')
+  return gulp.src('js/*sidebar.js')
     .pipe(jshint())
     .pipe(jshint.reporter());
 });
 
 gulp.task('lint:css', ['sass'], function() {
-  return gulp.src('src/*.css')
+  return gulp.src('css/*sidebar.css')
     .pipe(csslint({
       'adjoining-classes': false,
       'box-sizing': false,
@@ -46,21 +46,21 @@ gulp.task('lint:css', ['sass'], function() {
 gulp.task('minify', ['minify:js', 'minify:css']);
 
 gulp.task('minify:js', function() {
-  return gulp.src('src/*.js')
+  return gulp.src('js/*sidebar.js')
     .pipe(rename({ suffix: '.min' }))
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(uglify({
       preserveComments: 'some'
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('js'));
 });
 
 gulp.task('minify:css', ['sass'], function() {
-  return gulp.src('src/*.css')
+  return gulp.src('css/*sidebar.css')
     .pipe(rename({ suffix: '.min' }))
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('css'));
 });
 
 // Package for distribution
@@ -68,8 +68,8 @@ gulp.task('zip', ['minify'], function() {
   return gulp.src([
     'README.md',
     'LICENSE',
-    'dist/*-sidebar.min.css',
-    'dist/*-sidebar.min.js',
+    'css/*-sidebar.min.css',
+    'js/*-sidebar.min.js',
   ])
   .pipe(rename(function (path) {
     path.dirname = '';
@@ -78,16 +78,10 @@ gulp.task('zip', ['minify'], function() {
   .pipe(gulp.dest('dist'));
 });
 
-// Cleanup
-gulp.task('clean', function() {
-  return gulp.src('dist', {read: false})
-    .pipe(clean());
-});
-
 // Watch JS + CSS Files
-gulp.task('watch', ['lint'], function(){
-  gulp.watch('src/*.js', ['lint:js']);
-  gulp.watch('src/*.scss', ['lint:css']);
+gulp.task('watch', ['lint', 'minify'], function(){
+  gulp.watch('js/*.js', ['lint:js', 'minify:js']);
+  gulp.watch('scss/*.scss', ['lint:css', 'minify:css']);
 });
 
 // Default
