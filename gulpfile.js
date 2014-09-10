@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var csslint = require('gulp-csslint');
-var header = require('gulp-header');
 var jshint = require('gulp-jshint');
 var minifyCSS = require('gulp-minify-css');
 var sass = require('gulp-sass');
@@ -11,7 +10,6 @@ var zip = require('gulp-zip');
 
 var pkg = require('./package.json');
 var basename = pkg.name + '-' + pkg.version;
-var banner = '/*! ${pkg.name} v${pkg.version} */\n\n';
 
 // SASS compilation
 gulp.task('sass', function () {
@@ -48,17 +46,13 @@ gulp.task('minify', ['minify:js', 'minify:css']);
 gulp.task('minify:js', function() {
   return gulp.src('js/*sidebar.js')
     .pipe(rename({ suffix: '.min' }))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(uglify({
-      preserveComments: 'some'
-    }))
+    .pipe(uglify())
     .pipe(gulp.dest('js'));
 });
 
 gulp.task('minify:css', ['sass'], function() {
   return gulp.src('css/*sidebar.css')
     .pipe(rename({ suffix: '.min' }))
-    .pipe(header(banner, { pkg : pkg } ))
     .pipe(minifyCSS())
     .pipe(gulp.dest('css'));
 });
