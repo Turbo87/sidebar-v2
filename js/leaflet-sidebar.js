@@ -1,36 +1,113 @@
-$('.sidebar-tabs > li > a').on('click', function(e) {
-    var $tab = $(this).closest('li');
-    var $sidebar = $tab.closest('.sidebar');
-    var $tabs = $sidebar.find('.sidebar-tabs');
-    var $container = $sidebar.find('.sidebar-content');
+L.Control.Sidebar = L.Control.extend({
+    includes: L.Mixin.Events,
 
-    if ($tab.hasClass('active')) {
-        // remove old active highlights
-        $tabs.children('li.active').removeClass('active');
+    initialize: function (id, options) {
+        var i, child;
 
-        // close sidebar
-        $sidebar.addClass('collapsed');
+        L.setOptions(this, options);
 
-    } else {
-        // hide old active contents
-        $container.children('.sidebar-pane.active').removeClass('active');
+        // Find sidebar HTMLElement
+        this._sidebar = L.DomUtil.get(id);
 
-        // show new content
-        $container.children(this.hash).addClass('active');
+        // Attach touch styling if necessary
+        if (L.Browser.touch)
+            L.DomUtil.addClass(sidebar, 'leaflet-touch');
 
-        // remove old active highlights
-        $tabs.children('li.active').removeClass('active');
+        // Find sidebar > ul.sidebar-tabs and sidebar > div.sidebar-content
+        for (i = this._sidebar.children.length - 1; i >= 0; i--) {
+            child = this._sidebar.children[i];
+            if (child.tagName == 'UL' &&
+                    L.DomUtil.hasClass(child, 'sidebar-tabs'))
+                this._tabs = child;
 
-        // set new highlight
-        $tab.addClass('active');
+            else if (child.tagName == 'DIV' &&
+                    L.DomUtil.hasClass(child, 'sidebar-content'))
+                this._container = child;
+        }
 
-        if ($sidebar.hasClass('collapsed'))
-            // open sidebar
-            $sidebar.removeClass('collapsed');
+        // Find sidebar > ul.sidebar-tabs > li
+        this._tabitems = [];
+        for (i = this._tabs.children.length - 1; i >= 0; i--) {
+            child = this._tabs.children[i];
+            if (child.tagName == 'LI') {
+                this._tabitems.push(child);
+                child._sidebar = this;
+            }
+        }
+
+        // Find sidebar > div.sidebar-content > div.sidebar-pane
+        this._panes = [];
+        for (i = this._container.children.length - 1; i >= 0; i--) {
+            child = this._container.children[i];
+            if (child.tagName == 'DIV' &&
+                L.DomUtil.hasClass(child, 'sidebar-pane'))
+                this._panes.push(child);
+        }
+    },
+
+    addTo: function (map) {
+        this._map = map;
+
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            L.DomEvent.on(child.firstChild, 'click', this._onClick, child);
+        }
+
+        return this;
+    },
+
+    removeFrom: function (map) {
+        this._map = null;
+
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            L.DomEvent.off(child.firstChild, 'click', this._onClick);
+        }
+
+        return this;
+    },
+
+    _onClick: function(e) {
+        var i, child, tab = this;
+        var _this = tab._sidebar;
+
+        if (L.DomUtil.hasClass(tab, 'active')) {
+            // remove old active highlights
+            for (i = _this._tabitems.length - 1; i >= 0; i--) {
+                child = _this._tabitems[i];
+                if (L.DomUtil.hasClass(child, 'active'))
+                    L.DomUtil.removeClass(child, 'active');
+            }
+
+            // close sidebar
+            L.DomUtil.addClass(_this._sidebar, 'collapsed');
+
+        } else {
+            // hide old active contents and show new content
+            for (i = _this._panes.length - 1; i >= 0; i--) {
+                child = _this._panes[i];
+                if ('#' + child.id == tab.firstChild.hash)
+                    L.DomUtil.addClass(child, 'active');
+                else if (L.DomUtil.hasClass(child, 'active'))
+                    L.DomUtil.removeClass(child, 'active');
+            }
+
+            // remove old active highlights and set new highlight
+            for (i = _this._tabitems.length - 1; i >= 0; i--) {
+                child = _this._tabitems[i];
+                if (child == tab)
+                    L.DomUtil.addClass(child, 'active');
+                else if (L.DomUtil.hasClass(child, 'active'))
+                    L.DomUtil.removeClass(child, 'active');
+            }
+
+            // open sidebar (if necessary)
+            if (L.DomUtil.hasClass(_this._sidebar, 'collapsed'))
+                L.DomUtil.removeClass(_this._sidebar, 'collapsed');
+        }
     }
 });
 
-$(function () {
-    if (L.Browser.touch)
-        $('.sidebar').addClass('leaflet-touch');
-});
+L.control.sidebar = function (sidebar, options) {
+    return new L.Control.Sidebar(sidebar, options);
+};
