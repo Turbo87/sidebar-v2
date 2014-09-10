@@ -11,7 +11,7 @@ L.Control.Sidebar = L.Control.extend({
 
         // Attach touch styling if necessary
         if (L.Browser.touch)
-            L.DomUtil.addClass(sidebar, 'leaflet-touch');
+            L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
 
         // Find sidebar > ul.sidebar-tabs and sidebar > div.sidebar-content
         for (i = this._sidebar.children.length - 1; i >= 0; i--) {
