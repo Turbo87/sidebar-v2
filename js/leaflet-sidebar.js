@@ -67,6 +67,32 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    open: function(id) {
+        var i, child;
+
+        // hide old active contents and show new content
+        for (i = this._panes.length - 1; i >= 0; i--) {
+            child = this._panes[i];
+            if (child.id == id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // remove old active highlights and set new highlight
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            if (child.firstChild.hash == '#' + id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // open sidebar (if necessary)
+        if (L.DomUtil.hasClass(this._sidebar, 'collapsed'))
+            L.DomUtil.removeClass(this._sidebar, 'collapsed');
+    },
+
     close: function() {
         // remove old active highlights
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
@@ -80,35 +106,11 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     _onClick: function(e) {
-        var i, child, tab = this;
-        var _this = tab._sidebar;
+        if (L.DomUtil.hasClass(this, 'active'))
+            this._sidebar.close();
+        else
+            this._sidebar.open(this.firstChild.hash.slice(1));
 
-        if (L.DomUtil.hasClass(tab, 'active')) {
-            _this.close();
-
-        } else {
-            // hide old active contents and show new content
-            for (i = _this._panes.length - 1; i >= 0; i--) {
-                child = _this._panes[i];
-                if ('#' + child.id == tab.firstChild.hash)
-                    L.DomUtil.addClass(child, 'active');
-                else if (L.DomUtil.hasClass(child, 'active'))
-                    L.DomUtil.removeClass(child, 'active');
-            }
-
-            // remove old active highlights and set new highlight
-            for (i = _this._tabitems.length - 1; i >= 0; i--) {
-                child = _this._tabitems[i];
-                if (child == tab)
-                    L.DomUtil.addClass(child, 'active');
-                else if (L.DomUtil.hasClass(child, 'active'))
-                    L.DomUtil.removeClass(child, 'active');
-            }
-
-            // open sidebar (if necessary)
-            if (L.DomUtil.hasClass(_this._sidebar, 'collapsed'))
-                L.DomUtil.removeClass(_this._sidebar, 'collapsed');
-        }
     }
 });
 
