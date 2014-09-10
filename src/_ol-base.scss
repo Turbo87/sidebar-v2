@@ -26,14 +26,20 @@ $move-map-in-xs: false;
 
 .sidebar-tabs {
     overflow: hidden;
-    border-radius: $sidebar-inner-border-radius 0 0 $sidebar-inner-border-radius;
 
-    .collapsed & {
-        border-radius: $sidebar-inner-border-radius;
+    @media(min-width:$threshold-sm) {
+        border-radius: $sidebar-inner-border-radius 0 0 $sidebar-inner-border-radius;
+
+        .collapsed & {
+            border-radius: $sidebar-inner-border-radius;
+        }
     }
 }
 
 .sidebar-content {
     overflow: hidden;
-    border-radius: 0 $sidebar-inner-border-radius $sidebar-inner-border-radius 0;
+
+    @media(min-width:$threshold-sm) {
+        border-radius: 0 $sidebar-inner-border-radius $sidebar-inner-border-radius 0;
+    }
 }

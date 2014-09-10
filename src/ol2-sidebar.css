@@ -91,14 +91,18 @@
       border-radius: 4px; } }
 
 .sidebar-tabs {
-  overflow: hidden;
-  border-radius: 4px 0 0 4px; }
-  .collapsed .sidebar-tabs {
-    border-radius: 4px; }
+  overflow: hidden; }
+  @media (min-width: 768px) {
+    .sidebar-tabs {
+      border-radius: 4px 0 0 4px; }
+      .collapsed .sidebar-tabs {
+        border-radius: 4px; } }
 
 .sidebar-content {
-  overflow: hidden;
-  border-radius: 0 4px 4px 0; }
+  overflow: hidden; }
+  @media (min-width: 768px) {
+    .sidebar-content {
+      border-radius: 0 4px 4px 0; } }
 
 @media (min-width: 768px) {
   .sidebar.collapsed ~ .sidebar-map .olControlZoom {
