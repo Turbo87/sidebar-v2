@@ -13,6 +13,9 @@ $.fn.sidebar = function() {
     });
 
     $sidebar.open = function(id, $tab) {
+        if (typeof $tab === 'undefined')
+            $tab = $tabs.find('li > a[href="#' + id + '"]').parent();
+
         // hide old active contents
         $container.children('.sidebar-pane.active').removeClass('active');
 
