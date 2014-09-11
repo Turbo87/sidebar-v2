@@ -31,3 +31,8 @@ Example code at [`examples/ol2.html`](examples/ol2.html) ([Preview](http://turbo
 ![Sidebar collapsed](doc/gmaps-1.png) ![Sidebar extended](doc/gmaps-2.png)
 
 Example code at [`examples/gmaps.html`](examples/gmaps.html) ([Preview](http://turbo87.github.io/sidebar-v2/examples/gmaps.html))
+
+
+## License
+
+sidebar-v2 is free software, and may be redistributed under the [MIT license](LICENSE).
