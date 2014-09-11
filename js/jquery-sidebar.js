@@ -1,9 +1,10 @@
 $.fn.sidebar = function() {
-    this.find('.sidebar-tabs > li > a').on('click', function() {
+    var $sidebar = this;
+    var $tabs = $sidebar.children('.sidebar-tabs').first();
+    var $container = $sidebar.children('.sidebar-content').first();
+
+    $sidebar.find('.sidebar-tabs > li > a').on('click', function() {
         var $tab = $(this).closest('li');
-        var $sidebar = $tab.closest('.sidebar');
-        var $tabs = $sidebar.find('.sidebar-tabs');
-        var $container = $sidebar.find('.sidebar-content');
 
         if ($tab.hasClass('active')) {
             // remove old active highlights
