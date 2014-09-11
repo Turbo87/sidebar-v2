@@ -28,17 +28,24 @@ $.fn.sidebar = function() {
         // set new highlight
         $tab.addClass('active');
 
-        if ($sidebar.hasClass('collapsed'))
+        $sidebar.trigger('content', { 'id': id });
+
+        if ($sidebar.hasClass('collapsed')) {
             // open sidebar
+            $sidebar.trigger('opening');
             $sidebar.removeClass('collapsed');
+        }
     };
 
     $sidebar.close = function() {
         // remove old active highlights
         $tabs.children('li.active').removeClass('active');
 
-        // close sidebar
-        $sidebar.addClass('collapsed');
+        if (!$sidebar.hasClass('collapsed')) {
+            // close sidebar
+            $sidebar.trigger('closing');
+            $sidebar.addClass('collapsed');
+        }
     };
 
     return $sidebar;
