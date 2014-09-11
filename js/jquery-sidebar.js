@@ -7,12 +7,7 @@ $.fn.sidebar = function() {
         var $tab = $(this).closest('li');
 
         if ($tab.hasClass('active')) {
-            // remove old active highlights
-            $tabs.children('li.active').removeClass('active');
-
-            // close sidebar
-            $sidebar.addClass('collapsed');
-
+            $sidebar.close();
         } else {
             // hide old active contents
             $container.children('.sidebar-pane.active').removeClass('active');
@@ -32,5 +27,13 @@ $.fn.sidebar = function() {
         }
     });
 
-    return this;
+    $sidebar.close = function() {
+        // remove old active highlights
+        $tabs.children('li.active').removeClass('active');
+
+        // close sidebar
+        $sidebar.addClass('collapsed');
+    };
+
+    return $sidebar;
 };
