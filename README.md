@@ -4,7 +4,7 @@ A responsive sidebar for mapping libraries like [Leaflet](http://leafletjs.com/)
 
 ## Examples
 
-![Demo](sidebar-v2.gif)
+![Demo](doc/sidebar-v2.gif)
 
 - [Google Maps](http://turbo87.github.io/sidebar-v2/examples/gmaps.html)
 - [Leaflet](http://turbo87.github.io/sidebar-v2/examples/index.html)
