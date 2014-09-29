@@ -1,6 +1,6 @@
 {
   "name": "sidebar-v2",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A responsive sidebar for mapping libraries like Leaflet or OpenLayers",
   "keywords": [
     "gis",
