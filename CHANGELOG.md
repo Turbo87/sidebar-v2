@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.2.0 (not yet released)
+## v0.2.0 (2014-09-29)
 
 - jQuery API and events
 
