@@ -11,7 +11,8 @@ $sidebar-inner-border-radius: 4px;
     }
 }
 
-.sidebar-map .olControlZoom {
+.sidebar-map .olControlZoom,
+.sidebar-map .olScaleLine {
     margin-left: $tab-size + $sidebar-border-width * 2;
 
     @media(min-width:$threshold-sm) {
