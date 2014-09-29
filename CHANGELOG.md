@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.2.1 (not yet released)
+## v0.2.1 (2014-09-29)
 
 - ol2, ol3: fixed sidebar content scrolling
 
