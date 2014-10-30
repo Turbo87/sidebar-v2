@@ -100,6 +100,8 @@ L.Control.Sidebar = L.Control.extend({
             this.fire('opening');
             L.DomUtil.removeClass(this._sidebar, 'collapsed');
         }
+
+        return this;
     },
 
     close: function() {
@@ -115,6 +117,8 @@ L.Control.Sidebar = L.Control.extend({
             this.fire('closing');
             L.DomUtil.addClass(this._sidebar, 'collapsed');
         }
+
+        return this;
     },
 
     _onClick: function(e) {
