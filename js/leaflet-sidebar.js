@@ -140,13 +140,14 @@ L.Control.Sidebar = L.Control.extend({
         if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
             this.fire('closing');
             L.DomUtil.addClass(this._sidebar, 'collapsed');
-        }
-    },
+
             // Hide the closeButton if the sidebar is collapsed
             if (this.options.closeButton) {
                 L.DomUtil.addClass(this.getCloseButton(), 'u-display-none');
             }
-            
+        }
+    },
+    
     _onClick: function(e) {
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
