@@ -158,3 +158,22 @@ $move-map-in-xs: true !default;
         }
     }
 }
+.u-display-none {
+    display: none;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    
+    color:#333;
+    font-size: 25pt;
+    line-height: 1em;
+    text-align: center;
+    background: white;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    cursor: pointer;
+}
