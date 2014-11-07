@@ -1,6 +1,11 @@
 L.Control.Sidebar = L.Control.extend({
     includes: L.Mixin.Events,
 
+    // Default to have closeButton set to false
+    options: {
+        closeButton: false
+    },
+
     initialize: function (id, options) {
         var i, child;
 
@@ -12,6 +17,12 @@ L.Control.Sidebar = L.Control.extend({
         // Attach touch styling if necessary
         if (L.Browser.touch)
             L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
+
+        // Create close button and attach it if configured
+        if (this.options.closeButton === true) {
+            this._closeButton = L.DomUtil.create('a', 'sidebar-close-button u-display-none', this._sidebar);
+            this._closeButton.innerHTML = '&times;';
+        }
 
         // Find sidebar > ul.sidebar-tabs and sidebar > div.sidebar-content
         for (i = this._sidebar.children.length - 1; i >= 0; i--) {
@@ -51,6 +62,11 @@ L.Control.Sidebar = L.Control.extend({
     addTo: function (map) {
         this._map = map;
 
+        // Attach event to close button
+        if (this.options.closeButton) {
+            L.DomEvent.on(this.getCloseButton(), 'click', this.close, this);
+        }
+
         var e = this._hasTouchStart ? 'touchstart' : 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
@@ -62,6 +78,10 @@ L.Control.Sidebar = L.Control.extend({
 
     removeFrom: function (map) {
         this._map = null;
+
+        if (this._closeButton) {
+            L.DomEvent.off(this.getCloseButton(), 'click', this.close, this);
+        }
 
         var e = this._hasTouchStart ? 'touchstart' : 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
@@ -99,6 +119,10 @@ L.Control.Sidebar = L.Control.extend({
         if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
             this.fire('opening');
             L.DomUtil.removeClass(this._sidebar, 'collapsed');
+
+            if (this.options.closeButton) {
+                L.DomUtil.removeClass(this.getCloseButton(), 'u-display-none');
+            }
         }
 
         return this;
@@ -116,9 +140,17 @@ L.Control.Sidebar = L.Control.extend({
         if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
             this.fire('closing');
             L.DomUtil.addClass(this._sidebar, 'collapsed');
+
+            if (this.options.closeButton) {
+                L.DomUtil.addClass(this.getCloseButton(), 'u-display-none');
+            }
         }
 
         return this;
+    },
+
+    getCloseButton: function() {
+        return this._closeButton;
     },
 
     _onClick: function(e) {
