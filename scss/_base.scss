@@ -158,3 +158,21 @@ $move-map-in-xs: true !default;
         }
     }
 }
+
+.sidebar-close-button {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+
+    color: #333;
+    font-size: 25pt;
+    line-height: 1em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.u-display-none {
+    display: none;
+}
