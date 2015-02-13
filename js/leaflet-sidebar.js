@@ -51,10 +51,11 @@ L.Control.Sidebar = L.Control.extend({
     addTo: function (map) {
         this._map = map;
 
-        var e = this._hasTouchStart ? 'touchstart' : 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
-            L.DomEvent.on(child.firstChild, e, this._onClick, child);
+            L.DomEvent.on(child.firstChild, 'click', this._onClick, child);
+            if(this._hasTouchStart)
+                    L.DomEvent.on(child.firstChild, 'touchstart', this._onClick, child);
         }
 
         return this;
@@ -63,10 +64,11 @@ L.Control.Sidebar = L.Control.extend({
     removeFrom: function (map) {
         this._map = null;
 
-        var e = this._hasTouchStart ? 'touchstart' : 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
-            L.DomEvent.off(child.firstChild, e, this._onClick);
+            L.DomEvent.off(child.firstChild, 'click', this._onClick);
+            if(this._hasTouchStart)
+                L.DomEvent.off(child.firstChild, 'touchstart', this._onClick);
         }
 
         return this;
@@ -122,6 +124,7 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     _onClick: function(e) {
+        e.preventDefault();
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
         else
