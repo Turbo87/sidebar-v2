@@ -124,7 +124,7 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     _onClick: function(e) {
-		e.preventDefault();
+        e.preventDefault();
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
         else
