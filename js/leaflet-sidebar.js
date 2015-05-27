@@ -124,8 +124,10 @@ L.Control.Sidebar = L.Control.extend({
     _onClick: function(e) {
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
-        else
+        else {
+            if ( L.DomUtil.hasClass( this.querySelector('a'), 'disabled') ) { return; }
             this._sidebar.open(this.firstChild.hash.slice(1));
+        }
 
     }
 });
