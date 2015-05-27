@@ -8,8 +8,10 @@ $.fn.sidebar = function() {
 
         if ($tab.hasClass('active'))
             $sidebar.close();
-        else
+        else {
+            if ( $(this).hasClass('disabled') ) { return; }
             $sidebar.open(this.hash.slice(1), $tab);
+        }
     });
 
     $sidebar.open = function(id, $tab) {
