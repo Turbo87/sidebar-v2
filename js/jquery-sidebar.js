@@ -3,7 +3,8 @@ $.fn.sidebar = function() {
     var $tabs = $sidebar.children('.sidebar-tabs').first();
     var $container = $sidebar.children('.sidebar-content').first();
 
-    $sidebar.find('.sidebar-tabs > li > a').on('click', function() {
+    $sidebar.find('.sidebar-tabs > li > a').on('click', function(e) {
+        e.preventDefault();
         var $tab = $(this).closest('li');
 
         if ($tab.hasClass('active'))
