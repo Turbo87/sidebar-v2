@@ -54,7 +54,9 @@ L.Control.Sidebar = L.Control.extend({
         var e = this._hasTouchStart ? 'touchstart' : 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
-            L.DomEvent.on(child.firstChild, e, this._onClick, child);
+            L.DomEvent
+                .on(child.firstChild, e, L.DomEvent.preventDefault )
+                .on(child.firstChild, e, this._onClick, child);
         }
 
         return this;
