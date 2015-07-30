@@ -44,14 +44,12 @@ L.Control.Sidebar = L.Control.extend({
                 this._panes.push(child);
         }
 
-        this._hasTouchStart = L.Browser.touch &&
-            ('ontouchstart' in document.documentElement);
     },
 
     addTo: function (map) {
         this._map = map;
 
-        var e = this._hasTouchStart ? 'touchstart' : 'click';
+        var e = 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
             L.DomEvent.on(child.firstChild, e, this._onClick, child);
@@ -63,7 +61,7 @@ L.Control.Sidebar = L.Control.extend({
     removeFrom: function (map) {
         this._map = null;
 
-        var e = this._hasTouchStart ? 'touchstart' : 'click';
+        var e = 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
             L.DomEvent.off(child.firstChild, e, this._onClick);
