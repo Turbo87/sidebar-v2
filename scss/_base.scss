@@ -122,11 +122,11 @@ $move-map-in-xs: true !default;
 
     overflow-x: hidden;
     overflow-y: auto;
+
+    .sidebar.collapsed > & {
+        overflow-y: hidden;
+    }
 }
-
- .collapsed > .sidebar-content {
-    overflow-y:hidden; }
-
 
 .sidebar-pane {
     display: none;
