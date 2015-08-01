@@ -3,13 +3,16 @@ $.fn.sidebar = function() {
     var $tabs = $sidebar.children('.sidebar-tabs').first();
     var $container = $sidebar.children('.sidebar-content').first();
 
-    $sidebar.find('.sidebar-tabs > li > a').on('click', function() {
+    $sidebar.find('.sidebar-tabs > li > a').on('click', function(e) {
+        e.preventDefault();
         var $tab = $(this).closest('li');
 
         if ($tab.hasClass('active'))
             $sidebar.close();
-        else
+        else {
+            if ( $(this).hasClass('disabled') ) { return; }
             $sidebar.open(this.hash.slice(1), $tab);
+        }
     });
 
     $sidebar.find('.sidebar-close').on('click', function() {
