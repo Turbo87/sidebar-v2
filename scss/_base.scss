@@ -95,6 +95,22 @@ $move-map-in-xs: true !default;
             background-color: $tab-active-bg;
         }
 
+        &.disabled {
+            color: lighten($tab-fg, 40%);
+
+            &:hover {
+                @if $tab-bg {
+                    background: $tab-bg;
+                } @else {
+                    background: transparent;
+                }
+            }
+
+            & > a {
+                cursor: default;
+            }
+        }
+
         & > a {
             display: block;
 
@@ -106,12 +122,6 @@ $move-map-in-xs: true !default;
             color: inherit;
             text-decoration: none;
             text-align: center;
-
-            &.disabled {
-                color: lighten($tab-fg,40%);
-                @if $tab-bg { &:hover { background-color: $tab-bg; } }
-                cursor: default;
-            }
         }
     }
 }

@@ -9,10 +9,8 @@ $.fn.sidebar = function() {
 
         if ($tab.hasClass('active'))
             $sidebar.close();
-        else {
-            if ( $(this).hasClass('disabled') ) { return; }
+        else if (!$tab.hasClass('disabled'))
             $sidebar.open(this.hash.slice(1), $tab);
-        }
     });
 
     $sidebar.find('.sidebar-close').on('click', function() {
