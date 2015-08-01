@@ -49,10 +49,9 @@ L.Control.Sidebar = L.Control.extend({
     addTo: function (map) {
         this._map = map;
 
-        var e = 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
-            L.DomEvent.on(child.firstChild, e, this._onClick, child);
+            L.DomEvent.on(child.firstChild, 'click', this._onClick, child);
         }
 
         return this;
@@ -61,10 +60,9 @@ L.Control.Sidebar = L.Control.extend({
     removeFrom: function (map) {
         this._map = null;
 
-        var e = 'click';
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
             var child = this._tabitems[i];
-            L.DomEvent.off(child.firstChild, e, this._onClick);
+            L.DomEvent.off(child.firstChild, 'click', this._onClick);
         }
 
         return this;
