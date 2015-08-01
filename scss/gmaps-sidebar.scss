@@ -24,14 +24,14 @@ $tab-hover-bg: ($tabs-bg * 9 + $tab-active-bg) / 10;
 
         bottom: $sidebar-bottom-margin;
 
-        &.collapsed ~ .sidebar-map .gm-style div[controlheight="308"] {
+        &.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
             margin-left: $tab-size + $sidebar-margins !important;
         }
     }
 
 }
 
-.sidebar-map .gm-style div[controlheight="308"] {
+.sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
     @media(min-width:$threshold-sm) {
         transition: margin-left $sidebar-transition;
     }

@@ -37,6 +37,7 @@ gulp.task('lint:css', ['sass'], function() {
       'box-sizing': false,
       'fallback-colors': false,
       'important': false,
+      'regex-selectors': false,
     }))
     .pipe(csslint.reporter());
 });
