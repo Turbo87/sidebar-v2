@@ -5,7 +5,7 @@
 - ol2: move scale line control too when sidebar opens/closes
 
 
-## v0.2.1 (not yet released)
+## v0.2.1 (2014-09-29)
 
 - ol2, ol3: fixed sidebar content scrolling
 
