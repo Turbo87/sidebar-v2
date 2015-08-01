@@ -37,32 +37,51 @@ L.Control.Sidebar = L.Control.extend({
 
         // Find sidebar > div.sidebar-content > div.sidebar-pane
         this._panes = [];
+        this._closeButtons = [];
         for (i = this._container.children.length - 1; i >= 0; i--) {
             child = this._container.children[i];
             if (child.tagName == 'DIV' &&
-                L.DomUtil.hasClass(child, 'sidebar-pane'))
+                L.DomUtil.hasClass(child, 'sidebar-pane')) {
                 this._panes.push(child);
-        }
 
+                var closeButtons = child.querySelectorAll('.sidebar-heading > .sidebar-close');
+                for (var j = 0, len = closeButtons.length; j < len; j++)
+                    this._closeButtons.push(closeButtons[j]);
+            }
+        }
     },
 
     addTo: function (map) {
+        var i, child;
+
         this._map = map;
 
-        for (var i = this._tabitems.length - 1; i >= 0; i--) {
-            var child = this._tabitems[i];
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
             L.DomEvent.on(child.firstChild, 'click', this._onClick, child);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.on(child, 'click', this._onCloseClick, this);
         }
 
         return this;
     },
 
     removeFrom: function (map) {
+        var i, child;
+
         this._map = null;
 
-        for (var i = this._tabitems.length - 1; i >= 0; i--) {
-            var child = this._tabitems[i];
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
             L.DomEvent.off(child.firstChild, 'click', this._onClick);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.off(child, 'click', this._onCloseClick, this);
         }
 
         return this;
@@ -123,6 +142,10 @@ L.Control.Sidebar = L.Control.extend({
         else
             this._sidebar.open(this.firstChild.hash.slice(1));
 
+    },
+
+    _onCloseClick: function () {
+        this.close();
     }
 });
 

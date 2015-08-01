@@ -12,6 +12,10 @@ $.fn.sidebar = function() {
             $sidebar.open(this.hash.slice(1), $tab);
     });
 
+    $sidebar.find('.sidebar-close').on('click', function() {
+        $sidebar.close();
+    });
+
     $sidebar.open = function(id, $tab) {
         if (typeof $tab === 'undefined')
             $tab = $tabs.find('li > a[href="#' + id + '"]').parent();

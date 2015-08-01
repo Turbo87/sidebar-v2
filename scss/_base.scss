@@ -16,7 +16,8 @@ $tab-bg: null !default;
 $tab-transition: 80ms !default;
 
 $content-bg: rgba(255, 255, 255, 0.95) !default;
-$content-padding: 10px 20px !default;
+$content-padding-vertical: 10px !default;
+$content-padding-horizontal: 20px !default;
 
 $move-map-in-xs: true !default;
 
@@ -134,7 +135,7 @@ $move-map-in-xs: true !default;
     right: 0;
     box-sizing: border-box;
 
-    padding: $content-padding;
+    padding: $content-padding-vertical $content-padding-horizontal;
 
     &.active {
         display: block;
@@ -151,6 +152,26 @@ $move-map-in-xs: true !default;
     @media(min-width:$threshold-lg) {
         width: $width-lg - $tab-size;
     }
+}
+
+.sidebar-heading {
+    margin: (-$content-padding-vertical) (-$content-padding-horizontal) 0;
+    height: $tab-size;
+    padding: 0 $content-padding-horizontal;
+    line-height: $tab-size;
+    font-size: $tab-font-size * 1.2;
+    color: $tab-active-fg;
+    background-color: $tab-active-bg;
+}
+
+.sidebar-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $tab-size;
+    height: $tab-size;
+    text-align: center;
+    cursor: pointer;
 }
 
 @if $move-map-in-xs {
