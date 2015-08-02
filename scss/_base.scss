@@ -186,6 +186,7 @@ $move-map-in-xs: true !default;
 .sidebar-pane {
     display: none;
 
+    left: 0;
     right: 0;
     box-sizing: border-box;
 
@@ -196,15 +197,15 @@ $move-map-in-xs: true !default;
     }
 
     @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        width: $width-sm - $tab-size;
+        min-width: $width-sm - $tab-size;
     }
 
     @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        width: $width-md - $tab-size;
+        min-width: $width-md - $tab-size;
     }
 
     @media(min-width:$threshold-lg) {
-        width: $width-lg - $tab-size;
+        min-width: $width-lg - $tab-size;
     }
 }
 
