@@ -36,7 +36,7 @@ L.Control.Sidebar = L.Control.extend({
                 L.DomUtil.hasClass(child, 'sidebar-pane')) {
                 this._panes.push(child);
 
-                var closeButtons = child.querySelectorAll('.sidebar-heading > .sidebar-close');
+                var closeButtons = child.querySelectorAll('.sidebar-close');
                 for (var j = 0, len = closeButtons.length; j < len; j++)
                     this._closeButtons.push(closeButtons[j]);
             }
