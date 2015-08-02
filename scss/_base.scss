@@ -15,6 +15,9 @@ $tab-font-size: 12pt !default;
 $tab-bg: null !default;
 $tab-transition: 80ms !default;
 
+$header-fg: $tab-active-fg !default;
+$header-bg: $tab-active-bg !default;
+
 $content-bg: rgba(255, 255, 255, 0.95) !default;
 $content-padding-vertical: 10px !default;
 $content-padding-horizontal: 20px !default;
@@ -182,8 +185,8 @@ $move-map-in-xs: true !default;
     padding: 0 $content-padding-horizontal;
     line-height: $tab-size;
     font-size: $tab-font-size * 1.2;
-    color: $tab-active-fg;
-    background-color: $tab-active-bg;
+    color: $header-fg;
+    background-color: $header-bg;
 }
 
 .sidebar-close {
