@@ -240,11 +240,19 @@ $move-map-in-xs: true !default;
 }
 
 @if $move-map-in-xs {
-    .sidebar-map {
+    .sidebar-left ~ .sidebar-map {
         margin-left: $tab-size;
 
         @media(min-width:$threshold-sm) {
             margin-left: 0;
+        }
+    }
+
+    .sidebar-right ~ .sidebar-map {
+        margin-right: $tab-size;
+
+        @media(min-width:$threshold-sm) {
+            margin-right: 0;
         }
     }
 }

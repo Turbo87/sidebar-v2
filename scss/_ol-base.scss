@@ -16,12 +16,19 @@ $move-map-in-xs: false;
 
 .sidebar {
     background-color: $sidebar-bg;
-    border-right: $sidebar-border;
 
     @media(min-width:$threshold-sm) {
         border: $sidebar-border;
         border-radius: $sidebar-border-radius;
     }
+}
+
+.sidebar-left {
+    border-right: $sidebar-border;
+}
+
+.sidebar-right {
+    border-left: $sidebar-border;
 }
 
 .sidebar-tabs {
