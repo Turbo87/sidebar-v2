@@ -97,7 +97,7 @@ $move-map-in-xs: true !default;
             }
 
             &.disabled {
-                color: lighten($tab-fg, 40%);
+                color: fade-out($tab-fg, 0.6);
 
                 &:hover {
                     @if $tab-bg {
