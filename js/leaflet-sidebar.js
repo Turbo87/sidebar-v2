@@ -51,8 +51,8 @@ L.Control.Sidebar = L.Control.extend({
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
             L.DomEvent
-                .on(child.firstChild, 'click', L.DomEvent.preventDefault )
-                .on(child.firstChild, 'click', this._onClick, child);
+                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault )
+                .on(child.querySelector('a'), 'click', this._onClick, child);
         }
 
         for (i = this._closeButtons.length - 1; i >= 0; i--) {
@@ -70,7 +70,7 @@ L.Control.Sidebar = L.Control.extend({
 
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
-            L.DomEvent.off(child.firstChild, 'click', this._onClick);
+            L.DomEvent.off(child.querySelector('a'), 'click', this._onClick);
         }
 
         for (i = this._closeButtons.length - 1; i >= 0; i--) {
@@ -96,7 +96,7 @@ L.Control.Sidebar = L.Control.extend({
         // remove old active highlights and set new highlight
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
-            if (child.firstChild.hash == '#' + id)
+            if (child.querySelector('a').hash == '#' + id)
                 L.DomUtil.addClass(child, 'active');
             else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
@@ -134,7 +134,7 @@ L.Control.Sidebar = L.Control.extend({
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
         else if (!L.DomUtil.hasClass(this, 'disabled'))
-            this._sidebar.open(this.firstChild.hash.slice(1));
+            this._sidebar.open(this.querySelector('a').hash.slice(1));
     },
 
     _onCloseClick: function () {
