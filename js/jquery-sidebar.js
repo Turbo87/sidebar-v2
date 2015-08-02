@@ -1,7 +1,13 @@
-$.fn.sidebar = function() {
+$.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
     var $container = $sidebar.children('.sidebar-content').first();
+
+    options = $.extend({
+        position: 'left'
+    }, options || {});
+
+    $sidebar.addClass('sidebar-' + options.position);
 
     $tabs.children('li').children('a').on('click', function(e) {
         e.preventDefault();

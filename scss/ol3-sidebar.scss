@@ -3,30 +3,79 @@ $sidebar-inner-border-radius: 2px;
 
 @import 'ol-base';
 
-.sidebar {
-    @media(min-width:$threshold-sm) {
-        &.collapsed ~ .sidebar-map .ol-zoom {
-            margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+.sidebar-left {
+
+    & ~ .sidebar-map {
+
+        .ol-zoom {
+            margin-left: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-left $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+
+    &.collapsed ~ .sidebar-map {
+
+        .ol-zoom {
+            @media(min-width:$threshold-sm) {
+                margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
         }
     }
 }
 
-.sidebar-map .ol-zoom {
-    margin-left: $tab-size + $sidebar-border-width * 2;
 
-    @media(min-width:$threshold-sm) {
-        transition: margin-left $sidebar-transition;
+.sidebar-right {
+
+    & ~ .sidebar-map {
+
+        .ol-rotate,
+        .ol-attribution,
+        .ol-full-screen {
+
+            margin-right: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-right $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-right: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-right: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-right: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
     }
 
-    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
-    }
+    &.collapsed ~ .sidebar-map {
 
-    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
-    }
+        .ol-rotate,
+        .ol-attribution,
+        .ol-full-screen {
 
-    @media(min-width:$threshold-lg) {
-        margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            @media(min-width:$threshold-sm) {
+                margin-right: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
     }
 }

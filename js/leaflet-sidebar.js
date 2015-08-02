@@ -1,6 +1,10 @@
 L.Control.Sidebar = L.Control.extend({
     includes: L.Mixin.Events,
 
+    options: {
+        position: 'left'
+    },
+
     initialize: function (id, options) {
         var i, child;
 
@@ -8,6 +12,9 @@ L.Control.Sidebar = L.Control.extend({
 
         // Find sidebar HTMLElement
         this._sidebar = L.DomUtil.get(id);
+
+        // Attach .sidebar-left/right class
+        L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
 
         // Attach touch styling if necessary
         if (L.Browser.touch)

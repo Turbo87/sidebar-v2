@@ -26,28 +26,59 @@ $tab-active-bg: #0074d9;
         &.leaflet-touch {
             border: $sidebar-touch-border;
         }
+    }
+}
 
-        &.collapsed ~ .sidebar-map .leaflet-left {
-            left: $tab-size + $sidebar-margins;
+.sidebar-left {
+
+    & ~ .sidebar-map .leaflet-left {
+        @media(min-width:$threshold-sm) {
+            transition: left $sidebar-transition;
+        }
+
+        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+            left: $width-sm + $sidebar-margins;
+        }
+
+        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+            left: $width-md + $sidebar-margins;
+        }
+
+        @media(min-width:$threshold-lg) {
+            left: $width-lg + $sidebar-margins;
         }
     }
 
+    &.collapsed ~ .sidebar-map .leaflet-left {
+        @media(min-width:$threshold-sm) {
+            left: $tab-size + $sidebar-margins;
+        }
+    }
 }
 
-.sidebar-map .leaflet-left {
-    @media(min-width:$threshold-sm) {
-        transition: left $sidebar-transition;
+.sidebar-right {
+
+    & ~ .sidebar-map .leaflet-right {
+        @media(min-width:$threshold-sm) {
+            transition: right $sidebar-transition;
+        }
+
+        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+            right: $width-sm + $sidebar-margins;
+        }
+
+        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+            right: $width-md + $sidebar-margins;
+        }
+
+        @media(min-width:$threshold-lg) {
+            right: $width-lg + $sidebar-margins;
+        }
     }
 
-    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        left: $width-sm + $sidebar-margins;
-    }
-
-    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        left: $width-md + $sidebar-margins;
-    }
-
-    @media(min-width:$threshold-lg) {
-        left: $width-lg + $sidebar-margins;
+    &.collapsed ~ .sidebar-map .leaflet-right {
+        @media(min-width:$threshold-sm) {
+            right: $tab-size + $sidebar-margins;
+        }
     }
 }

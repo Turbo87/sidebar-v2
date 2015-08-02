@@ -3,31 +3,78 @@ $sidebar-inner-border-radius: 4px;
 
 @import 'ol-base';
 
-.sidebar {
-    @media(min-width:$threshold-sm) {
-        &.collapsed ~ .sidebar-map .olControlZoom {
-            margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+.sidebar-left {
+
+    & ~ .sidebar-map {
+
+        .olControlZoom,
+        .olScaleLine {
+            margin-left: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-left $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+
+    &.collapsed ~ .sidebar-map {
+
+        .olControlZoom,
+        .olScaleLine {
+            @media(min-width:$threshold-sm) {
+                margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
         }
     }
 }
 
-.sidebar-map .olControlZoom,
-.sidebar-map .olScaleLine {
-    margin-left: $tab-size + $sidebar-border-width * 2;
+.sidebar-right {
 
-    @media(min-width:$threshold-sm) {
-        transition: margin-left $sidebar-transition;
+    & ~ .sidebar-map {
+
+        .olControlAttribution,
+        .olControlPermalink,
+        .olControlMousePosition {
+            margin-right: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-right $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-right: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-right: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-right: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
     }
 
-    @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-        margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
-    }
+    &.collapsed ~ .sidebar-map {
 
-    @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-        margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
-    }
-
-    @media(min-width:$threshold-lg) {
-        margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+        .olControlAttribution,
+        .olControlPermalink,
+        .olControlMousePosition {
+            @media(min-width:$threshold-sm) {
+                margin-right: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
     }
 }

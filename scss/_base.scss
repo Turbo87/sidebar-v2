@@ -27,7 +27,6 @@ $move-map-in-xs: true !default;
 .sidebar {
     position: absolute;
 
-    left: 0;
     top: 0;
     bottom: 0;
     width: $width-xs;
@@ -41,7 +40,6 @@ $move-map-in-xs: true !default;
     }
 
     @media(min-width:$threshold-sm) {
-        left: $sidebar-margins;
         top: $sidebar-margins;
         bottom: $sidebar-margins;
 
@@ -61,10 +59,34 @@ $move-map-in-xs: true !default;
     }
 }
 
+.sidebar-left {
+    left: 0;
+
+    @media(min-width:$threshold-sm) {
+        left: $sidebar-margins;
+    }
+}
+
+.sidebar-right {
+    right: 0;
+
+    @media(min-width:$threshold-sm) {
+        right: $sidebar-margins;
+    }
+}
+
 .sidebar-tabs {
     top: 0;
     bottom: 0;
     height: 100%;
+
+    .sidebar-left & {
+        left: 0;
+    }
+
+    .sidebar-right & {
+        right: 0;
+    }
 
     background-color: $tabs-bg;
 
@@ -138,8 +160,15 @@ $move-map-in-xs: true !default;
 .sidebar-content {
     position: absolute;
 
-    left: $tab-size;
-    right: 0;
+    .sidebar-left & {
+        left: $tab-size;
+        right: 0;
+    }
+
+    .sidebar-right & {
+        left: 0;
+        right: $tab-size;
+    }
 
     top: 0;
     bottom: 0;
@@ -187,16 +216,27 @@ $move-map-in-xs: true !default;
     font-size: $tab-font-size * 1.2;
     color: $header-fg;
     background-color: $header-bg;
+
+    .sidebar-right & {
+        padding-left: $tab-size;
+    }
 }
 
 .sidebar-close {
     position: absolute;
-    right: 0;
     top: 0;
     width: $tab-size;
     height: $tab-size;
     text-align: center;
     cursor: pointer;
+
+    .sidebar-left & {
+        right: 0;
+    }
+
+    .sidebar-right & {
+        left: 0;
+    }
 }
 
 @if $move-map-in-xs {
