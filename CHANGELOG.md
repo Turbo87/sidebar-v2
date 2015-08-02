@@ -9,6 +9,7 @@
 - new `.sidebar-close` CSS class for close buttons in headings
 - fix broken Google Maps code (until Google changes things again...)
 - allow `.disabled` on `<li>` elements in `.sidebar-tabs` element
+- allow second tabbar at the bottom
 
 
 ## v0.2.1 (2014-09-29)

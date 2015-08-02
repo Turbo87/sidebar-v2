@@ -13,26 +13,18 @@ L.Control.Sidebar = L.Control.extend({
         if (L.Browser.touch)
             L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
 
-        // Find sidebar > ul.sidebar-tabs and sidebar > div.sidebar-content
+        // Find sidebar > div.sidebar-content
         for (i = this._sidebar.children.length - 1; i >= 0; i--) {
             child = this._sidebar.children[i];
-            if (child.tagName == 'UL' &&
-                    L.DomUtil.hasClass(child, 'sidebar-tabs'))
-                this._tabs = child;
-
-            else if (child.tagName == 'DIV' &&
+            if (child.tagName == 'DIV' &&
                     L.DomUtil.hasClass(child, 'sidebar-content'))
                 this._container = child;
         }
 
-        // Find sidebar > ul.sidebar-tabs > li
-        this._tabitems = [];
-        for (i = this._tabs.children.length - 1; i >= 0; i--) {
-            child = this._tabs.children[i];
-            if (child.tagName == 'LI') {
-                this._tabitems.push(child);
-                child._sidebar = this;
-            }
+        // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
+        this._tabitems = this._sidebar.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            this._tabitems[i]._sidebar = this;
         }
 
         // Find sidebar > div.sidebar-content > div.sidebar-pane

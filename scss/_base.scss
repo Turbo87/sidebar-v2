@@ -59,70 +59,76 @@ $move-map-in-xs: true !default;
 }
 
 .sidebar-tabs {
-    position: absolute;
-
     top: 0;
     bottom: 0;
-
-    width: $tab-size;
     height: 100%;
-
-    margin: 0;
-    padding: 0;
 
     background-color: $tabs-bg;
 
-    & > li {
-        width: 100%;
-        height: $tab-size;
+    &, & > ul {
+        position: absolute;
 
-        color: $tab-fg;
-        @if $tab-bg { background: $tab-bg; }
+        width: $tab-size;
 
-        font-size: $tab-font-size;
+        margin: 0;
+        padding: 0;
 
-        overflow: hidden;
+        & > li {
+            width: 100%;
+            height: $tab-size;
 
-        transition: all $tab-transition;
+            color: $tab-fg;
+            @if $tab-bg { background: $tab-bg; }
 
-        &:hover {
-            color: $tab-hover-fg;
-            background-color: $tab-hover-bg;
-        }
+            font-size: $tab-font-size;
 
-        &.active {
-            color: $tab-active-fg;
-            background-color: $tab-active-bg;
-        }
+            overflow: hidden;
 
-        &.disabled {
-            color: lighten($tab-fg, 40%);
+            transition: all $tab-transition;
 
             &:hover {
-                @if $tab-bg {
-                    background: $tab-bg;
-                } @else {
-                    background: transparent;
+                color: $tab-hover-fg;
+                background-color: $tab-hover-bg;
+            }
+
+            &.active {
+                color: $tab-active-fg;
+                background-color: $tab-active-bg;
+            }
+
+            &.disabled {
+                color: lighten($tab-fg, 40%);
+
+                &:hover {
+                    @if $tab-bg {
+                        background: $tab-bg;
+                    } @else {
+                        background: transparent;
+                    }
+                }
+
+                & > a {
+                    cursor: default;
                 }
             }
 
             & > a {
-                cursor: default;
+                display: block;
+
+                width: 100%;
+                height: 100%;
+
+                line-height: $tab-size;
+
+                color: inherit;
+                text-decoration: none;
+                text-align: center;
             }
         }
+    }
 
-        & > a {
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            line-height: $tab-size;
-
-            color: inherit;
-            text-decoration: none;
-            text-align: center;
-        }
+    & > ul + ul {
+        bottom: 0;
     }
 }
 

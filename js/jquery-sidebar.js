@@ -1,9 +1,9 @@
 $.fn.sidebar = function() {
     var $sidebar = this;
-    var $tabs = $sidebar.children('.sidebar-tabs').first();
+    var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
     var $container = $sidebar.children('.sidebar-content').first();
 
-    $sidebar.find('.sidebar-tabs > li > a').on('click', function(e) {
+    $tabs.children('li').children('a').on('click', function(e) {
         e.preventDefault();
         var $tab = $(this).closest('li');
 
