@@ -93,7 +93,7 @@ L.Control.Sidebar = L.Control.extend({
             disabled = this._getDisabledTabs(); //getting list of disabled tabs
             
         for(i = disabled.length-1; i>=0; i--) {
-            if(disabled[i].firstChild.hash =='#' + id)
+            if(disabled[i].firstChild.hash ==='#' + id)
                 return this;                        //if the tab is disabled, then do not try to open it.  
         }
 
@@ -145,12 +145,53 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
     
+    disable: function(id) {
+        var i, child,
+            id  = id ? this._getTab(id) : this._tabitems; //if no id is passed, it will enable all disabled tabs
+
+        for (i = id.length-1; i>=0; i--) {    
+            child = id[i].firstChild;
+            L.DomUtil.addClass(child, 'disabled'); //if the tab is disabled, then enable it.                       
+       }
+        return this;
+    },
+
+    enable: function(id) {
+        var i, child,
+            id = id ? this._getTab(id) : this._getDisabledTabs(); //if no id is passed, it will enable all disabled tabs
+
+        for (i = id.length-1; i>=0; i--) {    
+            child = id[i].firstChild;
+            L.DomUtil.removeClass(child, 'disabled'); //if the tab is disabled, then enable it.                       
+       }
+        return this;
+    },
+    
     getActiveTab: function() {
         return this._getActiveTab();
     },
     
     getDisabledTabs: function() {
       return this._getDisabledTabs();  
+    },
+    
+    getTab: function(id) {
+        return this._getTab(id);
+    },
+
+    _getTab : function (id) {   //returns the tab(s) with matching id(s)
+        var id = (Object.prototype.toString.call(id) ==='[object Array]' ) ? id : [id],
+            children = [];
+
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];  
+            for( var j = id.length-1; j >=0; j--) {
+                if (child.firstChild.hash === "#"+id[j]) {
+                   children.push(child);
+                }
+           }
+        } 
+        return children;
     },
     
     _getActiveTab: function() {
