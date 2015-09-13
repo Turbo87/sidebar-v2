@@ -5,6 +5,14 @@ L.Control.Sidebar = L.Control.extend({
         position: 'left'
     },
 
+    /**
+     * Create a new sidebar on this jQuery object.
+     *
+     * @constructor
+     * @param {string} id - The id of the sidebar element (without the # character)
+     * @param {Object} [options] - Optional options object
+     * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+     */
     initialize: function (id, options) {
         var i, child;
 
@@ -50,6 +58,12 @@ L.Control.Sidebar = L.Control.extend({
         }
     },
 
+    /**
+     * Add this sidebar to the specified map.
+     *
+     * @param {L.Map} map
+     * @returns {L.Control.Sidebar}
+     */
     addTo: function (map) {
         var i, child;
 
@@ -70,6 +84,12 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * Remove this sidebar from the map.
+     *
+     * @param {L.Map} map
+     * @returns {L.Control.Sidebar}
+     */
     removeFrom: function (map) {
         var i, child;
 
@@ -88,6 +108,11 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * Open sidebar (if necessary) and show the specified tab.
+     *
+     * @param {string} id - The id of the tab to show (without the # character)
+     */
     open: function(id) {
         var i, child;
 
@@ -120,6 +145,9 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * Close the sidebar (if necessary).
+     */
     close: function() {
         // remove old active highlights
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
@@ -137,6 +165,9 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * @private
+     */
     _onClick: function(e) {
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
@@ -144,11 +175,25 @@ L.Control.Sidebar = L.Control.extend({
             this._sidebar.open(this.querySelector('a').hash.slice(1));
     },
 
+    /**
+     * @private
+     */
     _onCloseClick: function () {
         this.close();
     }
 });
 
+/**
+ * Create a new sidebar on this jQuery object.
+ *
+ * @example
+ * var sidebar = L.control.sidebar('sidebar').addTo(map);
+ *
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @returns {L.Control.Sidebar} A new sidebar instance
+ */
 L.control.sidebar = function (id, options) {
     return new L.Control.Sidebar(id, options);
 };

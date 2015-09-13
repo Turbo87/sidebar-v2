@@ -1,3 +1,13 @@
+/**
+ * Create a new sidebar on this jQuery object.
+ *
+ * @example
+ * var sidebar = $('#sidebar').sidebar();
+ *
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @returns {jQuery}
+ */
 $.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
@@ -23,6 +33,12 @@ $.fn.sidebar = function(options) {
         $sidebar.close();
     });
 
+    /**
+     * Open sidebar (if necessary) and show the specified tab.
+     *
+     * @param {string} id - The id of the tab to show (without the # character)
+     * @param {jQuery} [$tab] - The jQuery object representing the tab node (used internally for efficiency)
+     */
     $sidebar.open = function(id, $tab) {
         if (typeof $tab === 'undefined')
             $tab = $tabs.find('li > a[href="#' + id + '"]').parent();
@@ -48,6 +64,9 @@ $.fn.sidebar = function(options) {
         }
     };
 
+    /**
+     * Close the sidebar (if necessary).
+     */
     $sidebar.close = function() {
         // remove old active highlights
         $tabs.children('li.active').removeClass('active');
