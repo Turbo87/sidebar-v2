@@ -149,6 +149,6 @@ L.Control.Sidebar = L.Control.extend({
     }
 });
 
-L.control.sidebar = function (sidebar, options) {
-    return new L.Control.Sidebar(sidebar, options);
+L.control.sidebar = function (id, options) {
+    return new L.Control.Sidebar(id, options);
 };
