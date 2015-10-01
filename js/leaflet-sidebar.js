@@ -6,14 +6,14 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
-     * Create a new sidebar on this jQuery object.
+     * Create a new sidebar on this object.
      *
      * @constructor
      * @param {string} id - The id of the sidebar element (without the # character)
      * @param {Object} [options] - Optional options object
      * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
      */
-    initialize: function (id, options) {
+    initialize: function(id, options) {
         var i, child;
 
         L.setOptions(this, options);
@@ -29,31 +29,35 @@ L.Control.Sidebar = L.Control.extend({
             L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
 
         // Find sidebar > div.sidebar-content
-        for (i = this._sidebar.children.length - 1; i >= 0; i--) {
+        for (i = 0; i < this._sidebar.children.length; i++) {
             child = this._sidebar.children[i];
-            if (child.tagName == 'DIV' &&
-                    L.DomUtil.hasClass(child, 'sidebar-content'))
-                this._container = child;
+            if (child.tagName === 'DIV' &&
+                    L.DomUtil.hasClass(child, 'sidebar-content')) {
+                this._paneContainer = child;
+            }
         }
 
         // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
+        // & save tab items in internal collection for easier iteration
         this._tabitems = this._sidebar.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
-        for (i = this._tabitems.length - 1; i >= 0; i--) {
+        for (i = 0; i < this._tabitems.length; i++) {
             this._tabitems[i]._sidebar = this;
         }
 
         // Find sidebar > div.sidebar-content > div.sidebar-pane
         this._panes = [];
         this._closeButtons = [];
-        for (i = this._container.children.length - 1; i >= 0; i--) {
-            child = this._container.children[i];
-            if (child.tagName == 'DIV' &&
+        for (i = 0; i < this._paneContainer.children.length; i++) {
+            child = this._paneContainer.children[i];
+            if (child.tagName === 'DIV' &&
                 L.DomUtil.hasClass(child, 'sidebar-pane')) {
                 this._panes.push(child);
 
+                // Save references to close buttons
                 var closeButtons = child.querySelectorAll('.sidebar-close');
-                for (var j = 0, len = closeButtons.length; j < len; j++)
+                for (var j = 0, len = closeButtons.length; j < len; j++) {
                     this._closeButtons.push(closeButtons[j]);
+                }
             }
         }
     },
@@ -64,19 +68,21 @@ L.Control.Sidebar = L.Control.extend({
      * @param {L.Map} map
      * @returns {L.Control.Sidebar}
      */
-    addTo: function (map) {
+    addTo: function(map) {
         var i, child;
 
         this._map = map;
 
-        for (i = this._tabitems.length - 1; i >= 0; i--) {
+        // Add click listeners for tab-buttons
+        for (i = 0; i < this._tabitems.length; i++) {
             child = this._tabitems[i];
             L.DomEvent
-                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault )
+                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault)
                 .on(child.querySelector('a'), 'click', this._onClick, child);
         }
 
-        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+        // Add click listeners for close-buttons
+        for (i = 0; i < this._closeButtons.length; i++) {
             child = this._closeButtons[i];
             L.DomEvent.on(child, 'click', this._onCloseClick, this);
         }
@@ -90,17 +96,19 @@ L.Control.Sidebar = L.Control.extend({
      * @param {L.Map} map
      * @returns {L.Control.Sidebar}
      */
-    removeFrom: function (map) {
+    removeFrom: function(map) {
         var i, child;
 
         this._map = null;
 
-        for (i = this._tabitems.length - 1; i >= 0; i--) {
+        // Remove click listeners for tab buttons
+        for (i = 0; i < this._tabitems.length - 1; i++) {
             child = this._tabitems[i];
             L.DomEvent.off(child.querySelector('a'), 'click', this._onClick);
         }
 
-        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+        // Remove click listeners for close buttons
+        for (i = 0; this._closeButtons.length; i++) {
             child = this._closeButtons[i];
             L.DomEvent.off(child, 'click', this._onCloseClick, this);
         }
@@ -109,26 +117,27 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
-     * Open sidebar (if necessary) and show the specified tab.
+     * Open sidebar (if it's closed) and show the specified tab.
      *
-     * @param {string} id - The id of the tab to show (without the # character)
+     * @param {string} id - The ID of the tab to show (without the # character)
+     * @returns {L.Control.Sidebar}
      */
     open: function(id) {
         var i, child;
 
-        // hide old active contents and show new content
-        for (i = this._panes.length - 1; i >= 0; i--) {
+        // Hide old active contents and show new content
+        for (i = 0; i < this._panes.length; i++) {
             child = this._panes[i];
-            if (child.id == id)
+            if (child.id === id)
                 L.DomUtil.addClass(child, 'active');
             else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
         }
 
-        // remove old active highlights and set new highlight
-        for (i = this._tabitems.length - 1; i >= 0; i--) {
+        // Remove old active highlights and set new highlight
+        for (i = 0; i < this._tabitems.length; i++) {
             child = this._tabitems[i];
-            if (child.querySelector('a').hash == '#' + id)
+            if (child.querySelector('a').hash === '#' + id)
                 L.DomUtil.addClass(child, 'active');
             else if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
@@ -136,7 +145,7 @@ L.Control.Sidebar = L.Control.extend({
 
         this.fire('content', { id: id });
 
-        // open sidebar (if necessary)
+        // Open sidebar if it's closed
         if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
             this.fire('opening');
             L.DomUtil.removeClass(this._sidebar, 'collapsed');
@@ -146,17 +155,19 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
-     * Close the sidebar (if necessary).
+     * Close the sidebar (if it's open).
      */
     close: function() {
-        // remove old active highlights
-        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+        var i;
+
+        // Remove old active highlights
+        for (i = 0; i < this._tabitems.length; i++) {
             var child = this._tabitems[i];
             if (L.DomUtil.hasClass(child, 'active'))
                 L.DomUtil.removeClass(child, 'active');
         }
 
-        // close sidebar
+        // close sidebar, if it's opened
         if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
             this.fire('closing');
             L.DomUtil.addClass(this._sidebar, 'collapsed');
@@ -166,6 +177,7 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
+     * Event listener for tab buttons
      * @private
      */
     _onClick: function() {
@@ -176,15 +188,16 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
+     * Event listener for close buttons
      * @private
      */
-    _onCloseClick: function () {
+    _onCloseClick: function() {
         this.close();
     }
 });
 
 /**
- * Create a new sidebar on this jQuery object.
+ * Create a new sidebar.
  *
  * @example
  * var sidebar = L.control.sidebar('sidebar').addTo(map);
@@ -194,6 +207,6 @@ L.Control.Sidebar = L.Control.extend({
  * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
  * @returns {L.Control.Sidebar} A new sidebar instance
  */
-L.control.sidebar = function (id, options) {
+L.control.sidebar = function(id, options) {
     return new L.Control.Sidebar(id, options);
 };
