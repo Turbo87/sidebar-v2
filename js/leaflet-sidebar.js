@@ -281,6 +281,49 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
+     * enables a disabled tab/panel
+     *
+     * @param {String} [id] ID of the panel to enable
+     * @returns {L.Control.Sidebar}
+     */
+    enablePanel: function(id) {
+    	var i, tab, tabID;
+
+    	for (i = 0; i < this._tabitems.length; i++) {
+    		tab   = this._tabitems[i];
+    		tabID = tab.querySelector('a').hash.slice(1);
+
+    		if (tabID = id && L.DomUtil.hasClass(tab, 'disabled')) {
+		        L.DomUtil.removeClass(tab, 'disabled');
+		    	break;
+	    	}
+    	}
+
+    	return this;
+    },
+
+    /**
+     * disables an enabled tab/panel
+     *
+     * @param {String} [id] ID of the panel to disable
+     * @returns {L.Control.Sidebar}
+     */
+    disablePanel: function(id) {
+    	var i, tab;
+
+    	for (i = 0; i < this._tabitems.length; i++) {
+    		tab   = this._tabitems[i];
+
+    		if (tab.querySelector('a').hash = '#' + id) {
+    			L.DomUtil.addClass(tab, 'disabled');
+		        break;
+    		}
+    	}
+
+    	return this;
+    },
+
+    /**
      * (un)registers the onclick event for the given tab
      * if sidebar is added to map add listener, else remove listener
      * @private
