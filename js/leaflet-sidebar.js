@@ -14,12 +14,14 @@ L.Control.Sidebar = L.Control.extend({
      * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
      */
     initialize: function(id, options) {
-        var i, child;
+        var i, child, tabContainers;
 
         L.setOptions(this, options);
 
-        // Find sidebar HTMLElement
+        // Find sidebar HTMLElement, create it if none was found
         this._sidebar = L.DomUtil.get(id);
+        if (this._sidebar === null)
+        	this._sidebar = L.DomUtil.create('div', 'sidebar collapsed', document.body);
 
         // Attach .sidebar-left/right class
         L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
@@ -28,23 +30,42 @@ L.Control.Sidebar = L.Control.extend({
         if (L.Browser.touch)
             L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
 
-        // Find sidebar > div.sidebar-content
-        for (i = 0; i < this._sidebar.children.length; i++) {
-            child = this._sidebar.children[i];
-            if (child.tagName === 'DIV' &&
-                    L.DomUtil.hasClass(child, 'sidebar-content')) {
-                this._paneContainer = child;
-            }
+        // Find paneContainer in DOM & store reference
+        this._paneContainer = this._sidebar.querySelector('div.sidebar-content');
+
+        // If none is found, create it
+        if (this._paneContainer === null)
+        	this._paneContainer = L.DomUtil.create('div', 'sidebar-content', this._sidebar);
+
+        // Find tabContainerTop & tabContainerBottom in DOM & store reference
+        tabContainers = this._sidebar.querySelectorAll('ul.sidebar-tabs, div.sidebar-tabs > ul');
+        this._tabContainerTop    = tabContainers[0] || null;
+        this._tabContainerBottom = tabContainers[1] || null;
+
+        // If no container was found, create it
+        if (this._tabContainerTop === null) {
+            var tabCC = L.DomUtil.create('div', 'sidebar-tabs', this._sidebar);
+            this._tabContainerTop = L.DomUtil.create('ul', '', tabCC);
+        }
+        if (this._tabContainerBottom === null) {
+            var tabCC = this._tabContainerTop.parentNode;
+            this._tabContainerBottom = L.DomUtil.create('ul', '', tabCC);
         }
 
-        // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
-        // & save tab items in internal collection for easier iteration
-        this._tabitems = this._sidebar.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
-        for (i = 0; i < this._tabitems.length; i++) {
-            this._tabitems[i]._sidebar = this;
+        // Store Tabs in Collection for easier iteration
+        this._tabitems = [];
+        for (i = 0; i < this._tabContainerTop.children.length; i++) {
+            child = this._tabContainerTop.children[i];
+            child._sidebar = this;
+            this._tabitems.push(child);
+        }
+        for (i = 0; i < this._tabContainerBottom.children.length; i++) {
+            child = this._tabContainerBottom.children[i];
+            child._sidebar = this;
+            this._tabitems.push(child);
         }
 
-        // Find sidebar > div.sidebar-content > div.sidebar-pane
+        // Store Panes in Collection for easier iteration
         this._panes = [];
         this._closeButtons = [];
         for (i = 0; i < this._paneContainer.children.length; i++) {
