@@ -188,8 +188,69 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
+     * Add a panel to the sidebar
+     *
+     * @example
+     * sidebar.addPanel({
+     *     id: 'userinfo',
+     *     tab: '<i class="fa fa-gear"></i>',
+     *     pane: someDomNode.innerHTML,
+     *     position: 'bottom'
+     * });
+     *
+     * @param {Object} [data] contains the data for the new Panel:
+     * @param {String} [data.id] the ID for the new Panel, must be unique for the whole page
+     * @param {String} [data.position='top'] where the tab will appear:
+     *                                       on the top or the bottom of the sidebar. 'top' or 'bottom'
+     * @param {HTMLString} {DOMnode} [data.tab]  content of the tab item, as HTMLstring or DOM node
+     * @param {HTMLString} {DOMnode} [data.pane] content of the panel, as HTMLstring or DOM node
+     * @param {String} [data.id] the ID for the new Panel, must be unique for the whole page
+     *
+     * @returns {L.Control.Sidebar}
      */
+    addPanel: function(data) {
+        var i, pane, tab, tabHref, closeButtons;
 
+        // Create pane node
+        if (typeof data.pane === 'string') {
+        	// pane is given as HTML string
+            pane = L.DomUtil.create('DIV', 'sidebar-pane', this._paneContainer);
+            pane.innerHTML = data.pane;
+        } else {
+        	// pane is given as DOM object
+        	pane = data.pane;
+            this._paneContainer.appendChild(pane);
+        }
+        pane.id = data.id;
+
+        // Create tab node
+        tab     = L.DomUtil.create('li', '');
+        tabHref = L.DomUtil.create('a', '', tab);
+        tabHref.href = '#' + data.id;
+        tabHref.role = 'tab';
+        tabHref.innerHTML = data.tab;
+        tab._sidebar = this;
+
+        if (data.position === 'bottom')
+        	this._tabContainerBottom.appendChild(tab);
+        else
+        	this._tabContainerTop.appendChild(tab);
+
+		// append new content to internal collections
+		this._panes.push(pane);
+		this._tabitems.push(tab);
+
+        // Register click listeners, if the sidebar is on the map
+        this._toggleTabClick(tab);
+
+	    // Save references to close buttons & register click listeners
+        closeButtons = pane.querySelectorAll('.sidebar-close');
+        for (i = 0; i < closeButtons.length; i++) {
+            this._closeButtons.push(closeButtons[i]);
+        	this._toggleCloseClick(closeButtons[i]);
+        }
+
+        return this;
     },
 
     /**
