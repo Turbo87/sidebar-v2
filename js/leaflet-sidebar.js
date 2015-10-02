@@ -254,6 +254,33 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
+     * Removes a panel from the sidebar
+     *
+     * @example
+     * sidebar.remove('userinfo');
+     *
+     * @param {String} [id] the ID of the panel that is to be removed
+     * @returns {L.Control.Sidebar}
+     */
+    removePanel: function(id) {
+
+        // find the panel by ID
+        for (var i = 0; i < this._panes.length; i++) {
+            if (this._panes[i].id == id) {
+            	// TODO: remove click listeners
+
+                // remove both tab and panel, ASSUMING they have the same index!
+                this._panes[i].remove();
+                this._panes.slice(i, 1);
+                this._tabitems[i].remove();
+                this._tabitems.slice(i, 1);
+            }
+        }
+
+        return this;
+    },
+
+    /**
      * (un)registers the onclick event for the given tab
      * if sidebar is added to map add listener, else remove listener
      * @private
