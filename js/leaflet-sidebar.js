@@ -90,23 +90,16 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     addTo: function(map) {
-        var i, child;
+        var i;
 
         this._map = map;
 
-        // Add click listeners for tab-buttons
-        for (i = 0; i < this._tabitems.length; i++) {
-            child = this._tabitems[i];
-            L.DomEvent
-                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault)
-                .on(child.querySelector('a'), 'click', this._onClick, child);
-        }
+        // Add click listeners for tab & close buttons
+        for (i = 0; i < this._tabitems.length; i++)
+        	this._toggleTabClick(this._tabitems[i]);
 
-        // Add click listeners for close-buttons
-        for (i = 0; i < this._closeButtons.length; i++) {
-            child = this._closeButtons[i];
-            L.DomEvent.on(child, 'click', this._onCloseClick, this);
-        }
+        for (i = 0; i < this._closeButtons.length; i++)
+            this._toggleCloseClick(this._closeButtons[i]);
 
         return this;
     },
@@ -118,21 +111,16 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     removeFrom: function(map) {
-        var i, child;
+        var i;
 
         this._map = null;
 
-        // Remove click listeners for tab buttons
-        for (i = 0; i < this._tabitems.length - 1; i++) {
-            child = this._tabitems[i];
-            L.DomEvent.off(child.querySelector('a'), 'click', this._onClick);
-        }
+        // Remove click listeners for tab & close buttons
+        for (i = 0; i < this._tabitems.length - 1; i++)
+            this._toggleTabClick(this._tabitems[i]);
 
-        // Remove click listeners for close buttons
-        for (i = 0; this._closeButtons.length; i++) {
-            child = this._closeButtons[i];
-            L.DomEvent.off(child, 'click', this._onCloseClick, this);
-        }
+        for (i = 0; this._closeButtons.length; i++)
+            this._toggleCloseClick(this._closeButtons[i]);
 
         return this;
     },
@@ -177,6 +165,8 @@ L.Control.Sidebar = L.Control.extend({
 
     /**
      * Close the sidebar (if it's open).
+	 *
+     * @returns {L.Control.Sidebar}
      */
     close: function() {
         var i;
@@ -198,22 +188,53 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
-     * Event listener for tab buttons
-     * @private
      */
-    _onClick: function() {
-        if (L.DomUtil.hasClass(this, 'active'))
-            this._sidebar.close();
-        else if (!L.DomUtil.hasClass(this, 'disabled'))
-            this._sidebar.open(this.querySelector('a').hash.slice(1));
+
     },
 
     /**
-     * Event listener for close buttons
+     * (un)registers the onclick event for the given tab
+     * if sidebar is added to map add listener, else remove listener
      * @private
+     *
+     * @param {DOMelement} [tab]
      */
-    _onCloseClick: function() {
-        this.close();
+    _toggleTabClick: function(tab) {
+
+    	var onTabClick = function() {
+	        if (L.DomUtil.hasClass(this, 'active'))
+	            this._sidebar.close();
+	        else if (!L.DomUtil.hasClass(this, 'disabled'))
+	            this._sidebar.open(this.querySelector('a').hash.slice(1));
+    	};
+
+    	if (this._map != null) {
+	    	L.DomEvent
+			    .on(tab.querySelector('a'), 'click', L.DomEvent.preventDefault)
+			    .on(tab.querySelector('a'), 'click', onTabClick, tab);
+    	} else {
+            L.DomEvent.off(tab.querySelector('a'), 'click', onTabClick);
+    	}
+    },
+
+    /**
+     * (un)registers the onclick event for the given close button
+     * if sidebar is added to map add listener, else remove listener
+     * @private
+     *
+     * @param {DOMelement} [closeButton]
+     */
+    _toggleCloseClick: function(closeButton) {
+
+    	var onCloseClick = function() {
+    		this.close();
+    	};
+
+    	if (this._map != null) {
+            L.DomEvent.on(closeButton, 'click', onCloseClick, this);
+    	} else {
+            L.DomEvent.off(closeButton, 'click', onCloseClick, this);
+    	}
     }
 });
 
