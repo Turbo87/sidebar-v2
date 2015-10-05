@@ -274,6 +274,8 @@ L.Control.Sidebar = L.Control.extend({
                 this._panes.slice(i, 1);
                 this._tabitems[i].remove();
                 this._tabitems.slice(i, 1);
+
+                break;
             }
         }
 
@@ -287,19 +289,10 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     enablePanel: function(id) {
-    	var i, tab, tabID;
+        var tab = this._getTab(id);
+        L.DomUtil.removeClass(tab, 'disabled');
 
-    	for (i = 0; i < this._tabitems.length; i++) {
-    		tab   = this._tabitems[i];
-    		tabID = tab.querySelector('a').hash.slice(1);
-
-    		if (tabID = id && L.DomUtil.hasClass(tab, 'disabled')) {
-		        L.DomUtil.removeClass(tab, 'disabled');
-		    	break;
-	    	}
-    	}
-
-    	return this;
+        return this;
     },
 
     /**
@@ -309,18 +302,10 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     disablePanel: function(id) {
-    	var i, tab;
+        var tab = this._getTab(id);
+        L.DomUtil.addClass(tab, 'disabled');
 
-    	for (i = 0; i < this._tabitems.length; i++) {
-    		tab   = this._tabitems[i];
-
-    		if (tab.querySelector('a').hash = '#' + id) {
-    			L.DomUtil.addClass(tab, 'disabled');
-		        break;
-    		}
-    	}
-
-    	return this;
+        return this;
     },
 
     /**
@@ -366,6 +351,24 @@ L.Control.Sidebar = L.Control.extend({
     	} else {
             L.DomEvent.off(closeButton, 'click', onCloseClick, this);
     	}
+    },
+
+    /**
+     * Finds & returns the DOMelement of a tab
+     *
+     * @param {String} [id] the id of the tab
+     * @returns {DOMelement} the tab specified by id, null if not found
+     */
+    _getTab: function(id) {
+        var i, tab;
+
+        for (i = 0; i < this._tabitems.length; i++) {
+            tab = this._tabitems[i];
+            if (tab.querySelector('a').hash === '#' + id)
+                return tab;
+        }
+
+        return null;
     }
 });
 
