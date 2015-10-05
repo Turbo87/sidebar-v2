@@ -14,7 +14,7 @@ L.Control.Sidebar = L.Control.extend({
      * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
      */
     initialize: function(id, options) {
-        var i, j, child, tabContainers;
+        var i, j, child, tabContainers, newContainer;
 
         L.setOptions(this, options);
 
@@ -44,12 +44,12 @@ L.Control.Sidebar = L.Control.extend({
 
         // If no container was found, create it
         if (this._tabContainerTop === null) {
-            var tabCC = L.DomUtil.create('div', 'sidebar-tabs', this._sidebar);
-            this._tabContainerTop = L.DomUtil.create('ul', '', tabCC);
+            newContainer = L.DomUtil.create('div', 'sidebar-tabs', this._sidebar);
+            this._tabContainerTop = L.DomUtil.create('ul', '', newContainer);
         }
         if (this._tabContainerBottom === null) {
-            var tabCC = this._tabContainerTop.parentNode;
-            this._tabContainerBottom = L.DomUtil.create('ul', '', tabCC);
+            newContainer = this._tabContainerTop.parentNode;
+            this._tabContainerBottom = L.DomUtil.create('ul', '', newContainer);
         }
 
         // Store Tabs in Collection for easier iteration
