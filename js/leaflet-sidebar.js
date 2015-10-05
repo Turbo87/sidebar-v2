@@ -132,7 +132,12 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     open: function(id) {
-        var i, child;
+        var i, child, tab;
+
+        // If panel is disabled, stop right here
+        tab = this._getTab(id);
+        if (L.DomUtil.hasClass(tab, 'disabled'))
+            return this;
 
         // Hide old active contents and show new content
         for (i = 0; i < this._panes.length; i++) {
