@@ -21,7 +21,7 @@ L.Control.Sidebar = L.Control.extend({
         // Find sidebar HTMLElement, create it if none was found
         this._sidebar = L.DomUtil.get(id);
         if (this._sidebar === null)
-        	this._sidebar = L.DomUtil.create('div', 'sidebar collapsed', document.body);
+            this._sidebar = L.DomUtil.create('div', 'sidebar collapsed', document.body);
 
         // Attach .sidebar-left/right class
         L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
@@ -35,7 +35,7 @@ L.Control.Sidebar = L.Control.extend({
 
         // If none is found, create it
         if (this._paneContainer === null)
-        	this._paneContainer = L.DomUtil.create('div', 'sidebar-content', this._sidebar);
+            this._paneContainer = L.DomUtil.create('div', 'sidebar-content', this._sidebar);
 
         // Find tabContainerTop & tabContainerBottom in DOM & store reference
         tabContainers = this._sidebar.querySelectorAll('ul.sidebar-tabs, div.sidebar-tabs > ul');
@@ -96,7 +96,7 @@ L.Control.Sidebar = L.Control.extend({
 
         // Add click listeners for tab & close buttons
         for (i = 0; i < this._tabitems.length; i++)
-        	this._toggleTabClick(this._tabitems[i]);
+            this._toggleTabClick(this._tabitems[i]);
 
         for (i = 0; i < this._closeButtons.length; i++)
             this._toggleCloseClick(this._closeButtons[i]);
@@ -170,7 +170,7 @@ L.Control.Sidebar = L.Control.extend({
 
     /**
      * Close the sidebar (if it's open).
-	 *
+     *
      * @returns {L.Control.Sidebar}
      */
     close: function() {
@@ -218,12 +218,12 @@ L.Control.Sidebar = L.Control.extend({
 
         // Create pane node
         if (typeof data.pane === 'string') {
-        	// pane is given as HTML string
+            // pane is given as HTML string
             pane = L.DomUtil.create('DIV', 'sidebar-pane', this._paneContainer);
             pane.innerHTML = data.pane;
         } else {
-        	// pane is given as DOM object
-        	pane = data.pane;
+            // pane is given as DOM object
+            pane = data.pane;
             this._paneContainer.appendChild(pane);
         }
         pane.id = data.id;
@@ -237,22 +237,22 @@ L.Control.Sidebar = L.Control.extend({
         tab._sidebar = this;
 
         if (data.position === 'bottom')
-        	this._tabContainerBottom.appendChild(tab);
+            this._tabContainerBottom.appendChild(tab);
         else
-        	this._tabContainerTop.appendChild(tab);
+            this._tabContainerTop.appendChild(tab);
 
-		// append new content to internal collections
-		this._panes.push(pane);
-		this._tabitems.push(tab);
+        // append new content to internal collections
+        this._panes.push(pane);
+        this._tabitems.push(tab);
 
         // Register click listeners, if the sidebar is on the map
         this._toggleTabClick(tab);
 
-	    // Save references to close buttons & register click listeners
+        // Save references to close buttons & register click listeners
         closeButtons = pane.querySelectorAll('.sidebar-close');
         for (i = 0; i < closeButtons.length; i++) {
             this._closeButtons.push(closeButtons[i]);
-        	this._toggleCloseClick(closeButtons[i]);
+            this._toggleCloseClick(closeButtons[i]);
         }
 
         return this;
@@ -271,8 +271,8 @@ L.Control.Sidebar = L.Control.extend({
 
         // find the panel by ID
         for (var i = 0; i < this._panes.length; i++) {
-            if (this._panes[i].id == id) {
-            	// TODO: remove click listeners
+            if (this._panes[i].id === id) {
+                // TODO: remove click listeners
 
                 // remove both tab and panel, ASSUMING they have the same index!
                 this._panes[i].remove();
@@ -322,20 +322,20 @@ L.Control.Sidebar = L.Control.extend({
      */
     _toggleTabClick: function(tab) {
 
-    	var onTabClick = function() {
-	        if (L.DomUtil.hasClass(this, 'active'))
-	            this._sidebar.close();
-	        else if (!L.DomUtil.hasClass(this, 'disabled'))
-	            this._sidebar.open(this.querySelector('a').hash.slice(1));
-    	};
+        var onTabClick = function() {
+            if (L.DomUtil.hasClass(this, 'active'))
+                this._sidebar.close();
+            else if (!L.DomUtil.hasClass(this, 'disabled'))
+                this._sidebar.open(this.querySelector('a').hash.slice(1));
+        };
 
-    	if (this._map != null) {
-	    	L.DomEvent
-			    .on(tab.querySelector('a'), 'click', L.DomEvent.preventDefault)
-			    .on(tab.querySelector('a'), 'click', onTabClick, tab);
-    	} else {
+        if (this._map != null) {
+            L.DomEvent
+                .on(tab.querySelector('a'), 'click', L.DomEvent.preventDefault)
+                .on(tab.querySelector('a'), 'click', onTabClick, tab);
+        } else {
             L.DomEvent.off(tab.querySelector('a'), 'click', onTabClick);
-    	}
+        }
     },
 
     /**
@@ -347,15 +347,15 @@ L.Control.Sidebar = L.Control.extend({
      */
     _toggleCloseClick: function(closeButton) {
 
-    	var onCloseClick = function() {
-    		this.close();
-    	};
+        var onCloseClick = function() {
+            this.close();
+        };
 
-    	if (this._map != null) {
+        if (this._map != null) {
             L.DomEvent.on(closeButton, 'click', onCloseClick, this);
-    	} else {
+        } else {
             L.DomEvent.off(closeButton, 'click', onCloseClick, this);
-    	}
+        }
     },
 
     /**
