@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sidebar-v2 API example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
+
+    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #AAA;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <a href="https://github.com/Turbo87/sidebar-v2/"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script src="../js/leaflet-sidebar.js"></script>
+
+    <script>
+        var map = L.map('map');
+        map.setView([51.2, 7], 9);
+
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker = L.marker([51.2, 7]).addTo(map);
+
+        var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+        var userpanel = {
+            id:   'user1',
+            tab:  '<i class="fa fa-user"></i>',
+            pane: '<h1 class="sidebar-header">User Data<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>',
+        };
+
+        sidebar
+            .addPanel({
+                id:   'settings',
+                tab:  '<i class="fa fa-gear"></i>',
+                pane: '<h1 class="sidebar-header">Settings<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1><br><button onclick="sidebar.enablePanel(\'home\')">enable home</button><button onclick="sidebar.disablePanel(\'home\')">disable home</button><button onclick="addUser()">add user</button>',
+                position: 'bottom'
+            })
+            .addPanel({
+                id:   'home',
+                tab:  '<i class="fa fa-home"></i>',
+                pane: '<h1 class="sidebar-header">Home<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>'
+            })
+            .disablePanel('home')
+            .open('settings');
+
+        function addUser() {
+    		var num = userpanel.id.slice(4);
+            userpanel.id = 'user' + (num + 1); //increment number by 1
+            sidebar.addPanel(userpanel);
+        }
+    </script>
+</body>
+</html>
