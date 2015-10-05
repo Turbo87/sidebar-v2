@@ -14,7 +14,7 @@ L.Control.Sidebar = L.Control.extend({
      * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
      */
     initialize: function(id, options) {
-        var i, child, tabContainers;
+        var i, j, child, tabContainers;
 
         L.setOptions(this, options);
 
@@ -76,7 +76,7 @@ L.Control.Sidebar = L.Control.extend({
 
                 // Save references to close buttons
                 var closeButtons = child.querySelectorAll('.sidebar-close');
-                for (var j = 0, len = closeButtons.length; j < len; j++) {
+                for (j = 0, len = closeButtons.length; j < len; j++) {
                     this._closeButtons.push(closeButtons[j]);
                 }
             }
@@ -96,10 +96,10 @@ L.Control.Sidebar = L.Control.extend({
 
         // Add click listeners for tab & close buttons
         for (i = 0; i < this._tabitems.length; i++)
-            this._toggleTabClick(this._tabitems[i]);
+            this._tabClick(this._tabitems[i], 'on');
 
         for (i = 0; i < this._closeButtons.length; i++)
-            this._toggleCloseClick(this._closeButtons[i]);
+            this._closeClick(this._closeButtons[i], 'on');
 
         return this;
     },
@@ -117,10 +117,10 @@ L.Control.Sidebar = L.Control.extend({
 
         // Remove click listeners for tab & close buttons
         for (i = 0; i < this._tabitems.length - 1; i++)
-            this._toggleTabClick(this._tabitems[i]);
+            this._tabClick(this._tabitems[i], 'off');
 
         for (i = 0; this._closeButtons.length; i++)
-            this._toggleCloseClick(this._closeButtons[i]);
+            this._closeClick(this._closeButtons[i], 'off');
 
         return this;
     },
@@ -246,13 +246,13 @@ L.Control.Sidebar = L.Control.extend({
         this._tabitems.push(tab);
 
         // Register click listeners, if the sidebar is on the map
-        this._toggleTabClick(tab);
+        this._tabClick(tab, 'on');
 
         // Save references to close buttons & register click listeners
         closeButtons = pane.querySelectorAll('.sidebar-close');
         for (i = 0; i < closeButtons.length; i++) {
             this._closeButtons.push(closeButtons[i]);
-            this._toggleCloseClick(closeButtons[i]);
+            this._closeClick(closeButtons[i], 'on');
         }
 
         return this;
@@ -268,14 +268,23 @@ L.Control.Sidebar = L.Control.extend({
      * @returns {L.Control.Sidebar}
      */
     removePanel: function(id) {
+        var i, j, pane, closeButtons;
 
         // find the panel by ID
-        for (var i = 0; i < this._panes.length; i++) {
+        for (i = 0; i < this._panes.length; i++) {
             if (this._panes[i].id === id) {
-                // TODO: remove click listeners
+                pane = this._panes[i];
+
+                // Remove click listeners
+                this._tabClick(this.tabitems[i], 'off');
+
+                closeButtons = pane.querySelectorAll('.sidebar-close');
+                for (j = 0; i < closeButtons.length; i++) {
+                    this._closeClick(closeButtons[j], 'off');
+                }
 
                 // remove both tab and panel, ASSUMING they have the same index!
-                this._panes[i].remove();
+                pane.remove();
                 this._panes.slice(i, 1);
                 this._tabitems[i].remove();
                 this._tabitems.slice(i, 1);
@@ -314,13 +323,14 @@ L.Control.Sidebar = L.Control.extend({
     },
 
     /**
-     * (un)registers the onclick event for the given tab
-     * if sidebar is added to map add listener, else remove listener
+     * (un)registers the onclick event for the given tab,
+     * depending on the second argument.
      * @private
      *
      * @param {DOMelement} [tab]
+     * @param {String} [on] 'on' or 'off'
      */
-    _toggleTabClick: function(tab) {
+    _tabClick: function(tab, on) {
 
         var onTabClick = function() {
             if (L.DomUtil.hasClass(this, 'active'))
@@ -329,7 +339,7 @@ L.Control.Sidebar = L.Control.extend({
                 this._sidebar.open(this.querySelector('a').hash.slice(1));
         };
 
-        if (this._map != null) {
+        if (on === 'on') {
             L.DomEvent
                 .on(tab.querySelector('a'), 'click', L.DomEvent.preventDefault)
                 .on(tab.querySelector('a'), 'click', onTabClick, tab);
@@ -340,18 +350,19 @@ L.Control.Sidebar = L.Control.extend({
 
     /**
      * (un)registers the onclick event for the given close button
-     * if sidebar is added to map add listener, else remove listener
+     * depending on the second argument
      * @private
      *
      * @param {DOMelement} [closeButton]
+     * @param {String} [on] 'on' or 'off'
      */
-    _toggleCloseClick: function(closeButton) {
+    _closeClick: function(closeButton, on) {
 
         var onCloseClick = function() {
             this.close();
         };
 
-        if (this._map != null) {
+        if (on === 'on') {
             L.DomEvent.on(closeButton, 'click', onCloseClick, this);
         } else {
             L.DomEvent.off(closeButton, 'click', onCloseClick, this);
