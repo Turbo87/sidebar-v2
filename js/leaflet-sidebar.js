@@ -136,7 +136,7 @@ L.Control.Sidebar = L.Control.extend({
                 L.DomUtil.removeClass(child, 'active');
         }
 
-        this.fire('tab-opened', { id: id });
+        this.fire('content tab-opened', { id: id });
 
         // open sidebar (if necessary)
         if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
