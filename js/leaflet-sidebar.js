@@ -1,18 +1,19 @@
-L.Control.Sidebar = L.Control.extend({
+/**
+ * @name Sidebar
+ * @class L.Control.Sidebar
+ * @extends L.Control
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @see L.control.sidebar
+ */
+L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
     includes: L.Mixin.Events,
 
     options: {
         position: 'left'
     },
 
-    /**
-     * Create a new sidebar on this jQuery object.
-     *
-     * @constructor
-     * @param {string} id - The id of the sidebar element (without the # character)
-     * @param {Object} [options] - Optional options object
-     * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
-     */
     initialize: function (id, options) {
         var i, child;
 
@@ -62,7 +63,7 @@ L.Control.Sidebar = L.Control.extend({
      * Add this sidebar to the specified map.
      *
      * @param {L.Map} map
-     * @returns {L.Control.Sidebar}
+     * @returns {Sidebar}
      */
     addTo: function (map) {
         var i, child;
@@ -88,7 +89,7 @@ L.Control.Sidebar = L.Control.extend({
      * Remove this sidebar from the map.
      *
      * @param {L.Map} map
-     * @returns {L.Control.Sidebar}
+     * @returns {Sidebar}
      */
     removeFrom: function (map) {
         var i, child;
@@ -184,7 +185,7 @@ L.Control.Sidebar = L.Control.extend({
 });
 
 /**
- * Create a new sidebar on this jQuery object.
+ * Creates a new sidebar.
  *
  * @example
  * var sidebar = L.control.sidebar('sidebar').addTo(map);
@@ -192,7 +193,7 @@ L.Control.Sidebar = L.Control.extend({
  * @param {string} id - The id of the sidebar element (without the # character)
  * @param {Object} [options] - Optional options object
  * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
- * @returns {L.Control.Sidebar} A new sidebar instance
+ * @returns {Sidebar} A new sidebar instance
  */
 L.control.sidebar = function (id, options) {
     return new L.Control.Sidebar(id, options);
