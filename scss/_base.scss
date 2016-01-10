@@ -1,11 +1,11 @@
-$threshold-lg: 1200px;
-$threshold-md: 992px;
-$threshold-sm: 768px;
+$threshold-lg: 1200px !default;
+$threshold-md: 992px !default;
+$threshold-sm: 768px !default;
 
-$width-lg: 460px;
-$width-md: 390px;
-$width-sm: 305px;
-$width-xs: 100%;
+$width-lg: 460px !default;
+$width-md: 390px !default;
+$width-sm: 305px !default;
+$width-xs: 100% !default;
 
 $sidebar-z-index: 2000 !default;
 $sidebar-transition: 500ms !default;

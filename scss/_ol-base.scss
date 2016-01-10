@@ -1,16 +1,16 @@
-$sidebar-bg: rgba(255, 255, 255, 0.4);
-$sidebar-border-width: 3px;
-$sidebar-border-radius: 4px;
-$sidebar-border: $sidebar-border-width solid transparent;
+$sidebar-bg: rgba(255, 255, 255, 0.4) !default;
+$sidebar-border-width: 3px !default;
+$sidebar-border-radius: 4px !default;
+$sidebar-border: $sidebar-border-width solid transparent !default;
 
-$tab-fg: #fff;
-$tabs-bg: rgba(0, 60, 136, 0.5);
-$tab-hover-fg: #fff;
-$tab-hover-bg: rgba(0, 60, 136, 0.6);
-$tab-active-fg: #fff;
-$tab-active-bg: #0074d9;
+$tab-fg: #fff !default;
+$tabs-bg: rgba(0, 60, 136, 0.5) !default;
+$tab-hover-fg: #fff !default;
+$tab-hover-bg: rgba(0, 60, 136, 0.6) !default;
+$tab-active-fg: #fff !default;
+$tab-active-bg: #0074d9 !default;
 
-$move-map-in-xs: false;
+$move-map-in-xs: false !default;
 
 @import 'base';
 

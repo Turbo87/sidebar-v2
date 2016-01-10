@@ -1,14 +1,14 @@
-$sidebar-margins: 10px;
-$sidebar-border-radius: 4px;
-$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2);
-$sidebar-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+$sidebar-margins: 10px !default;
+$sidebar-border-radius: 4px !default;
+$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2) !default;
+$sidebar-shadow: 0 1px 5px rgba(0, 0, 0, 0.65) !default;
 
-$tab-fg: #333;
-$tabs-bg: #fff;
-$tab-hover-fg: #000;
-$tab-hover-bg: #eee;
-$tab-active-fg: #fff;
-$tab-active-bg: #0074d9;
+$tab-fg: #333 !default;
+$tabs-bg: #fff !default;
+$tab-hover-fg: #000 !default;
+$tab-hover-bg: #eee !default;
+$tab-active-fg: #fff !default;
+$tab-active-bg: #0074d9 !default;
 
 @import 'base';
 

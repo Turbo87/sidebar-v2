@@ -1,16 +1,16 @@
-$sidebar-margins: 15px;
-$sidebar-bottom-margin: 35px;
-$sidebar-border: 1pt solid rgba(127, 127, 127, 0.3);
-$sidebar-border-radius: 4px;
-$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2);
-$sidebar-shadow: 1px 3px 4px -2px rgba(0, 0, 0, 0.35);
+$sidebar-margins: 15px !default;
+$sidebar-bottom-margin: 35px !default;
+$sidebar-border: 1pt solid rgba(127, 127, 127, 0.3) !default;
+$sidebar-border-radius: 4px !default;
+$sidebar-touch-border: 2px solid rgba(0, 0, 0, 0.2) !default;
+$sidebar-shadow: 1px 3px 4px -2px rgba(0, 0, 0, 0.35) !default;
 
-$tab-fg: #666;
-$tabs-bg: #fff;
-$tab-active-fg: #000;
-$tab-active-bg: #febf00;
-$tab-hover-fg: #000;
-$tab-hover-bg: ($tabs-bg * 9 + $tab-active-bg) / 10;
+$tab-fg: #666 !default;
+$tabs-bg: #fff !default;
+$tab-active-fg: #000 !default;
+$tab-active-bg: #febf00 !default;
+$tab-hover-fg: #000 !default;
+$tab-hover-bg: ($tabs-bg * 9 + $tab-active-bg) / 10 !default;
 
 @import 'base';
 
