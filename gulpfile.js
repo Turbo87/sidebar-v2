@@ -14,9 +14,7 @@ var basename = pkg.name + '-' + pkg.version;
 // SASS compilation
 gulp.task('sass', function () {
     gulp.src('scss/*sidebar.scss')
-        .pipe(sass({
-          sourceComments: 'map'
-        }))
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('css'));
 });
 
