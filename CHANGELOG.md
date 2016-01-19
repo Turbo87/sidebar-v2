@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.3.0 (not yet released)
+## v0.3.0 (2016-01-19)
 
 - ol2: move scale line control too when sidebar opens/closes
 - hide scrollbars when collapsed ([#21](https://github.com/Turbo87/sidebar-v2/issues/21))
