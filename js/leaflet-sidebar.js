@@ -73,7 +73,6 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
             L.DomEvent
-                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault )
                 .on(child.querySelector('a'), 'click', this._onClick, child);
         }
 
@@ -169,11 +168,16 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
     /**
      * @private
      */
-    _onClick: function() {
-        if (L.DomUtil.hasClass(this, 'active'))
-            this._sidebar.close();
-        else if (!L.DomUtil.hasClass(this, 'disabled'))
-            this._sidebar.open(this.querySelector('a').hash.slice(1));
+    _onClick: function(e) {
+        if (!L.DomUtil.hasClass(this, 'sidebar-button')) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (L.DomUtil.hasClass(this, 'active')) {
+                this._sidebar.close();
+            } else if (!L.DomUtil.hasClass(this, 'disabled') {
+                this._sidebar.open(this.querySelector('a').hash.slice(1));
+            }
+        }
     },
 
     /**
