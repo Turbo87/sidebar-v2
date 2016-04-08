@@ -1,3 +1,20 @@
+(function (factory) {
+	var L, proj4;
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define(['leaflet'], factory);
+	} else if (typeof module ==='object' && typeof module.exports === 'object') {
+		// Node/CommonJS
+		L = require('leaflet');
+		module.exports = factory(L);
+	} else {
+		// Browser globals
+		if (typeof window.L === 'undefined')
+			throw 'Leaflet must be loaded first';
+		factory(window.L);
+	}
+}(function (L) {
+
 /**
  * @name Sidebar
  * @class L.Control.Sidebar
@@ -198,3 +215,6 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 L.control.sidebar = function (id, options) {
     return new L.Control.Sidebar(id, options);
 };
+
+	return L.Control.Sidebar;
+}, window));
