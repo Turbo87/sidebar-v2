@@ -91,7 +91,7 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
      * @param {L.Map} map
      * @returns {Sidebar}
      */
-    removeFrom: function (map) {
+    remove: function (map) {
         var i, child;
 
         this._map = null;
