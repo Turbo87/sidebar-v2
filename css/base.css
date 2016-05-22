@@ -1,7 +1,3 @@
-/*
-
-$move-map-in-xs: true !default; */
-
 
 :root {
   --threshold-lg: 1200px;
@@ -221,197 +217,94 @@ $move-map-in-xs: true !default; */
       padding-left: var(--tab-size);
   }
 
-/* replacement fold */
 
 .sidebar-close {
   position: absolute;
   top: 0;
-  width: 40px;
-  height: 40px;
+  width: var(--tab-size);
+  height: var(--tab-size);
   text-align: center;
   cursor: pointer; }
+
   .sidebar-left .sidebar-close {
-    right: 0; }
+      right: 0;
+  }
+
   .sidebar-right .sidebar-close {
-    left: 0; }
+      left: 0;
+  }
+
 
 .sidebar-left ~ .sidebar-map {
-  margin-left: 40px; }
-  @media (min-width: 768px) {
+  margin-left: var(--tab-size); }
+
+  @media(min-width: 768px) {
     .sidebar-left ~ .sidebar-map {
-      margin-left: 0; } }
+      margin-left: 0; }
+  }
 
 .sidebar-right ~ .sidebar-map {
-  margin-right: 40px; }
-  @media (min-width: 768px) {
+  margin-right: var(--tab-size); }
+
+  @media(min-width: 768px) {
     .sidebar-right ~ .sidebar-map {
-      margin-right: 0; } }
-
-.sidebar {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65); }
-  .sidebar.leaflet-touch {
-    box-shadow: none;
-    border-right: 2px solid rgba(0, 0, 0, 0.2); }
-  @media (min-width: 768px) {
-    .sidebar {
-      border-radius: 4px; }
-      .sidebar.leaflet-touch {
-        border: 2px solid rgba(0, 0, 0, 0.2); } }
-
-@media (min-width: 768px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    transition: left 500ms; } }
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: 315px; } }
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: 400px; } }
-
-@media (min-width: 1200px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: 470px; } }
-
-@media (min-width: 768px) {
-  .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
-    left: 50px; } }
-
-@media (min-width: 768px) {
-  .sidebar-right ~ .sidebar-map .leaflet-right {
-    transition: right 500ms; } }
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: 315px; } }
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: 400px; } }
-
-@media (min-width: 1200px) {
-  .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: 470px; } }
-
-@media (min-width: 768px) {
-  .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
-    right: 50px; } }
+      margin-right: 0; }
+  }
 
 
-/* new css */
-
-
-/*
-/*
-
-
-.sidebar-close {
-    position: absolute;
-    top: 0;
-    width: $tab-size;
-    height: $tab-size;
-    text-align: center;
-    cursor: pointer;
-
-    .sidebar-left & {
-        right: 0;
-    }
-
-    .sidebar-right & {
-        left: 0;
-    }
-}
-
-@if $move-map-in-xs {
-    .sidebar-left ~ .sidebar-map {
-        margin-left: $tab-size;
-
-        @media(min-width:$threshold-sm) {
-            margin-left: 0;
-        }
-    }
-
-    .sidebar-right ~ .sidebar-map {
-        margin-right: $tab-size;
-
-        @media(min-width:$threshold-sm) {
-            margin-right: 0;
-        }
-    }
-} */
-
-/*
 .sidebar {
   box-shadow: var(--sidebar-shadow); }
 
   .sidebar.leaflet-touch {
-      box-shadow: none;
-      border-right: var(--sidebar-touch-border);
+    box-shadow: none;
+    border-right: var(--sidebar-touch-border);
   }
 
-  @media(min-width: var(--threshold-sm)) {
+  @media(min-width: 768px) {
     .sidebar {
       border-radius: var(--sidebar-border-radius); }
 
       .sidebar.leaflet-touch {
-          border: var(--sidebar-touch-border);
-      }
+        border: var(--sidebar-touch-border); }
   }
-*/
 
-/*
-.sidebar-left {
 
-    & ~ .sidebar-map .leaflet-left {
-        @media(min-width:$threshold-sm) {
-            transition: left $sidebar-transition;
-        }
+@media (min-width: 768px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    transition: left var(--sidebar-transition); } }
 
-        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-            left: $width-sm + $sidebar-margins;
-        }
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-sm) + var(--sidebar-margins)); } }
 
-        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-            left: $width-md + $sidebar-margins;
-        }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-md) + var(--sidebar-margins)); } }
 
-        @media(min-width:$threshold-lg) {
-            left: $width-lg + $sidebar-margins;
-        }
-    }
+@media (min-width: 1200px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-lg) + var(--sidebar-margins); } }
 
-    &.collapsed ~ .sidebar-map .leaflet-left {
-        @media(min-width:$threshold-sm) {
-            left: $tab-size + $sidebar-margins;
-        }
-    }
-}
+@media (min-width: 768px) {
+  .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
+    left: calc(var(--tab-size) + var(--sidebar-margins)); } }
 
-.sidebar-right {
+@media (min-width: 768px) {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
+    transition: right var(--sidebar-transition); } }
 
-    & ~ .sidebar-map .leaflet-right {
-        @media(min-width:$threshold-sm) {
-            transition: right $sidebar-transition;
-        }
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
+    right: calc(var(--width-sm) + var(--sidebar-margins)); } }
 
-        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
-            right: $width-sm + $sidebar-margins;
-        }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
+    right: calc(var(--width-md) + var(--sidebar-margins)); } }
 
-        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
-            right: $width-md + $sidebar-margins;
-        }
+@media (min-width: 1200px) {
+  .sidebar-right ~ .sidebar-map .leaflet-right {
+    right: calc(var(--width-lg) + var(--sidebar-margins)); } }
 
-        @media(min-width:$threshold-lg) {
-            right: $width-lg + $sidebar-margins;
-        }
-    }
-
-    &.collapsed ~ .sidebar-map .leaflet-right {
-        @media(min-width:$threshold-sm) {
-            right: $tab-size + $sidebar-margins;
-        }
-    }
-} */
-
+@media (min-width: 768px) {
+  .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
+    right: calc(var(--tab-size) + var(--sidebar-margins)); } }
