@@ -42,6 +42,7 @@ $move-map-in-xs: true !default; */
   --tab-active-bg: #0074d9;
 }
 
+
 /* new css */
 
 .sidebar {
@@ -60,29 +61,24 @@ $move-map-in-xs: true !default; */
   }
 
   @media(min-width: 768px) {
-/*  @media(min-width: var(--threshold-sm)) {*/
     :root {
       --sidebar-margins: 10px;
     }
     .sidebar {
-
       transition: width var(--sidebar-transition); }
   }
 
   @media(min-width: 768px) and (max-width: 991px) {
-/*  @media(min-width: var(--threshold-sm)) and (max-width: calc(var(--threshold-md) - 1px)) {*/
     .sidebar {
       width: var(--width-sm); }
   }
 
-  @media(min-width: 992px) and (max-width: calc(1200px - 1px)) {
-/*  @media(min-width: var(--threshold-md)) and (max-width: calc(var(--threshold-lg) - 1px)) {*/
+  @media(min-width: 992px) and (max-width: 1199px) {
     .sidebar {
       width: var(--width-md); }
   }
 
   @media(min-width: 1200px) {
-/*  @media(min-width: var(--threshold-lg)) {*/
     .sidebar {
       width: var(--width-lg); }
   }
