@@ -1,8 +1,5 @@
 
 :root {
-  --threshold-lg: 1200px;
-  --threshold-md: 992px;
-  --threshold-sm: 768px;
 
   --width-lg: 460px;
   --width-md: 390px;
@@ -14,7 +11,6 @@
 
   --tab-size: 40px;
   --tab-font-size: 12pt;
-  --tab-bg: null;
   --tab-transition: 80ms;
 
   --header-fg: var(--tab-active-fg);
@@ -213,7 +209,7 @@
   color: var(--header-fg);
   background-color: var(--header-bg); }
 
-  .sidebar-right & {
+  .sidebar-right .sidebar-header {
       padding-left: var(--tab-size);
   }
 
@@ -271,40 +267,41 @@
 
 @media (min-width: 768px) {
   .sidebar-left ~ .sidebar-map .leaflet-left {
-    transition: left var(--sidebar-transition); } }
+    transition: left var(--sidebar-transition); }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: calc(var(--width-sm) + var(--sidebar-margins)); } }
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: calc(var(--width-md) + var(--sidebar-margins)); } }
-
-@media (min-width: 1200px) {
-  .sidebar-left ~ .sidebar-map .leaflet-left {
-    left: calc(var(--width-lg) + var(--sidebar-margins); } }
-
-@media (min-width: 768px) {
   .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
-    left: calc(var(--tab-size) + var(--sidebar-margins)); } }
+    left: calc(var(--tab-size) + var(--sidebar-margins)); }
 
-@media (min-width: 768px) {
   .sidebar-right ~ .sidebar-map .leaflet-right {
-    transition: right var(--sidebar-transition); } }
+    transition: right var(--sidebar-transition); }
+
+  .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
+    right: calc(var(--tab-size) + var(--sidebar-margins)); }
+}
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-sm) + var(--sidebar-margins)); }
+
   .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: calc(var(--width-sm) + var(--sidebar-margins)); } }
+    right: calc(var(--width-sm) + var(--sidebar-margins)); }
+
+}
 
 @media (min-width: 992px) and (max-width: 1199px) {
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-md) + var(--sidebar-margins)); }
+
   .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: calc(var(--width-md) + var(--sidebar-margins)); } }
+    right: calc(var(--width-md) + var(--sidebar-margins)); }
+
+}
 
 @media (min-width: 1200px) {
-  .sidebar-right ~ .sidebar-map .leaflet-right {
-    right: calc(var(--width-lg) + var(--sidebar-margins)); } }
+  .sidebar-left ~ .sidebar-map .leaflet-left {
+    left: calc(var(--width-lg) + var(--sidebar-margins)); }
 
-@media (min-width: 768px) {
-  .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
-    right: calc(var(--tab-size) + var(--sidebar-margins)); } }
+  .sidebar-right ~ .sidebar-map .leaflet-right {
+    right: calc(var(--width-lg) + var(--sidebar-margins)); }
+}
+
