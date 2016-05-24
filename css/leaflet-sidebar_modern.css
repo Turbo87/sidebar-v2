@@ -36,8 +36,6 @@
 }
 
 
-/* new css */
-
 .sidebar {
   position: absolute;
 
@@ -304,4 +302,3 @@
   .sidebar-right ~ .sidebar-map .leaflet-right {
     right: calc(var(--width-lg) + var(--sidebar-margins)); }
 }
-
