@@ -17,7 +17,7 @@
     "url": "https://github.com/turbo87/sidebar-v2.git"
   },
   "devDependencies": {
-    "gulp": "~3.8.7",
+    "gulp": "^3.9.1",
     "gulp-clean": "~0.3.1",
     "gulp-concat": "~2.3.4",
     "gulp-csslint": "~0.1.4",
