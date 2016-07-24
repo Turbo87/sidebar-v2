@@ -1,23 +1,53 @@
 {
-  "name": "sidebar-v2",
-  "version": "0.3.0",
-  "description": "A responsive sidebar for mapping libraries like Leaflet or OpenLayers",
-  "keywords": [
-    "gis",
-    "leaflet",
-    "openlayers",
-    "map"
+  "_args": [
+    [
+      "mapseed-sidebar",
+      "/Users/owner/projects/temp"
+    ]
   ],
-  "homepage": "https://github.com/turbo87/sidebar-v2",
-  "bugs": "https://github.com/turbo87/sidebar-v2/issues",
-  "license": "MIT",
-  "author": "Tobias Bieniek <tobias.bieniek@gmx.de>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/turbo87/sidebar-v2.git"
+  "_from": "mapseed-sidebar@latest",
+  "_id": "mapseed-sidebar@0.3.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mapseed-sidebar",
+  "_nodeVersion": "6.2.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/mapseed-sidebar-0.3.2.tgz_1468561843474_0.5375012301374227"
   },
+  "_npmUser": {
+    "email": "hello@bilalkhoukhi.com",
+    "name": "bil-io"
+  },
+  "_npmVersion": "3.8.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mapseed-sidebar",
+    "raw": "mapseed-sidebar",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mapseed-sidebar/-/mapseed-sidebar-0.3.2.tgz",
+  "_shasum": "ac63e98a3e30dc9a6af735abfe795a1376f96dc0",
+  "_shrinkwrap": null,
+  "_spec": "mapseed-sidebar",
+  "_where": "/Users/owner/projects/temp",
+  "author": {
+    "email": "hello@bilalkhoukhi.com",
+    "name": "Bilal Khoukhi"
+  },
+  "bugs": {
+    "url": "https://github.com/bil-io/mapseed-sidebar/issues"
+  },
+  "dependencies": {},
+  "description": "A responsive sidebar for mapping libraries like Leaflet or OpenLayers",
   "devDependencies": {
-    "gulp": "~3.8.7",
+    "gulp": "^3.9.1",
     "gulp-clean": "~0.3.1",
     "gulp-concat": "~2.3.4",
     "gulp-csslint": "~0.1.4",
@@ -28,7 +58,35 @@
     "gulp-uglify": "~0.3.1",
     "gulp-zip": "~0.5.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "ac63e98a3e30dc9a6af735abfe795a1376f96dc0",
+    "tarball": "https://registry.npmjs.org/mapseed-sidebar/-/mapseed-sidebar-0.3.2.tgz"
+  },
+  "gitHead": "fe72eb1e2def4d58af71ebe61eadfbe9a7554616",
+  "homepage": "https://github.com/bil-io/mapseed-sidebar",
+  "keywords": [
+    "gis",
+    "leaflet",
+    "map",
+    "openlayers"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "bil-io",
+      "email": "hello@bilalkhoukhi.com"
+    }
+  ],
+  "name": "mapseed-sidebar",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bil-io/mapseed-sidebar.git"
+  },
   "scripts": {
     "test": "gulp lint"
-  }
+  },
+  "version": "0.3.2"
 }
