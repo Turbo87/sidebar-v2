@@ -84,6 +84,17 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 
         return this;
     },
+    
+    /**
+     * @deprecated - Please use remove() instead of removeFrom(), as of Leaflet 0.8-dev, the removeFrom() has been replaced with remove()
+     * Removes this sidebar from the map.
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+     removeFrom: function(map) {
+         console.log('removeFrom() has been deprecated, please use remove() instead as support for this function will be ending soon.');
+         this.remove(map);
+     },
 
     /**
      * Remove this sidebar from the map.
@@ -91,7 +102,7 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
      * @param {L.Map} map
      * @returns {Sidebar}
      */
-    removeFrom: function (map) {
+    remove: function (map) {
         var i, child;
 
         this._map = null;
