@@ -20,13 +20,15 @@ $.fn.sidebar = function(options) {
     $sidebar.addClass('sidebar-' + options.position);
 
     $tabs.children('li').children('a').on('click', function(e) {
-        e.preventDefault();
         var $tab = $(this).closest('li');
+        if (!$tab.hasClass('sidebar-button')) {
+            e.preventDefault();
 
-        if ($tab.hasClass('active'))
-            $sidebar.close();
-        else if (!$tab.hasClass('disabled'))
-            $sidebar.open(this.hash.slice(1), $tab);
+            if ($tab.hasClass('active'))
+                $sidebar.close();
+            else if (!$tab.hasClass('disabled'))
+                $sidebar.open(this.hash.slice(1), $tab);
+        }
     });
 
     $sidebar.find('.sidebar-close').on('click', function() {
