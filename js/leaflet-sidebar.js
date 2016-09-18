@@ -72,9 +72,13 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             child = this._tabitems[i];
-            L.DomEvent
-                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault )
-                .on(child.querySelector('a'), 'click', this._onClick, child);
+            var sub = child.querySelector('a');
+            if (sub.hasAttribute('href') && sub.getAttribute('href').slice(0,1) == '#') {
+                L.DomEvent
+                    .on(sub, 'click', L.DomEvent.preventDefault )
+                    .on(sub, 'click', this._onClick, child);
+            }
+            
         }
 
         for (i = this._closeButtons.length - 1; i >= 0; i--) {
