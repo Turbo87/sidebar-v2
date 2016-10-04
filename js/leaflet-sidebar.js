@@ -78,7 +78,6 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
                     .on(sub, 'click', L.DomEvent.preventDefault )
                     .on(sub, 'click', this._onClick, child);
             }
-            
         }
 
         for (i = this._closeButtons.length - 1; i >= 0; i--) {
@@ -88,7 +87,7 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 
         return this;
     },
-    
+
     /**
      * @deprecated - Please use remove() instead of removeFrom(), as of Leaflet 0.8-dev, the removeFrom() has been replaced with remove()
      * Removes this sidebar from the map.
