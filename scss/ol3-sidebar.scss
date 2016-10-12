@@ -7,7 +7,7 @@ $sidebar-inner-border-radius: 2px !default;
 
     & ~ .sidebar-map {
 
-        .ol-zoom {
+        .ol-zoom, .ol-scale-line {
             margin-left: $tab-size + $sidebar-border-width * 2;
 
             @media(min-width: $threshold-sm) {
@@ -30,7 +30,7 @@ $sidebar-inner-border-radius: 2px !default;
 
     &.collapsed ~ .sidebar-map {
 
-        .ol-zoom {
+        .ol-zoom, .ol-scale-line {
             @media(min-width:$threshold-sm) {
                 margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
             }
