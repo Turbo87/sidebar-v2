@@ -26,11 +26,37 @@ $sidebar-inner-border-radius: 2px !default;
                 margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
             }
         }
+
+        .ol-scale-line {
+            margin-left: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-left $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
     }
 
     &.collapsed ~ .sidebar-map {
 
         .ol-zoom {
+            @media(min-width:$threshold-sm) {
+                margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+
+        .ol-scale-line {
             @media(min-width:$threshold-sm) {
                 margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
             }
