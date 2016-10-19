@@ -184,10 +184,12 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
      * @private
      */
     _onClick: function() {
-        if (L.DomUtil.hasClass(this, 'active'))
-            this._sidebar.close();
-        else if (!L.DomUtil.hasClass(this, 'disabled'))
-            this._sidebar.open(this.querySelector('a').hash.slice(1));
+        if(this.querySelector('a').hash) {
+            if (L.DomUtil.hasClass(this, 'active'))
+                this._sidebar.close();
+            else if (!L.DomUtil.hasClass(this, 'disabled'))
+                this._sidebar.open(this.querySelector('a').hash.slice(1));
+        }
     },
 
     /**
