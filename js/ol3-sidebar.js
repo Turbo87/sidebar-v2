@@ -11,7 +11,7 @@ ol.control.Sidebar = function (settings) {
         element: document.getElementById(this._options.element),
         target: this._options.target
     });
-}
+};
 
 ol.inherits(ol.control.Sidebar, ol.control.Control);
 
@@ -32,6 +32,22 @@ ol.control.Sidebar.prototype.setMap = function(map) {
             this._container = child;
         }
     }
+    
+    function tabClick(e) {
+        e = e || window.event;
+        e.preventDefault();
+        if (this.parentNode.classList.contains('active')) {
+            _this.close();
+        } else if (!this.parentNode.classList.contains('disabled')) {
+            _this.open(this.hash.slice(1));
+        }
+    }
+    
+    function closeClick(e) {
+        e = e || window.event;
+        e.preventDefault();
+        _this.close();
+    }
 
     // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
     this._tabitems = this.element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
@@ -40,15 +56,7 @@ ol.control.Sidebar.prototype.setMap = function(map) {
         child = this._tabitems[i];
         var sub = child.querySelector('a');
         if (sub.hasAttribute('href') && sub.getAttribute('href').slice(0,1) == '#') {
-            sub.onclick = function(e) {
-                e = e || window.event;
-                e.preventDefault();
-                if (this.parentNode.classList.contains('active')) {
-                    _this.close();
-                } else if (!this.parentNode.classList.contains('disabled')) {
-                    _this.open(this.hash.slice(1));
-                }
-            };
+            sub.onclick = tabClick;
         }
     }
 
@@ -63,11 +71,7 @@ ol.control.Sidebar.prototype.setMap = function(map) {
             var closeButtons = child.querySelectorAll('.sidebar-close');
             for (var j = 0, len = closeButtons.length; j < len; j++) {
                 this._closeButtons.push(closeButtons[j]);
-                closeButtons[j].onclick = function(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    _this.close();
-                };
+                closeButtons[j].onclick = closeClick;
             }
         }
     }
