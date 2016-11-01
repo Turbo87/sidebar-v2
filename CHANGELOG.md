@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.4.0
+## v0.3.1 (2016-11-01)
 
 - fix `ol3` example map layer ([#77](https://github.com/Turbo87/sidebar-v2/pull/77))
 - leaflet: deprecate `removeFrom()` in favor of `remove()` ([#73](https://github.com/Turbo87/sidebar-v2/pull/73))
