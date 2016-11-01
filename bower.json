@@ -12,7 +12,8 @@
     "css/ol2-sidebar.css",
     "css/ol3-sidebar.css",
     "js/jquery-sidebar.js",
-    "js/leaflet-sidebar.js"
+    "js/leaflet-sidebar.js",
+    "js/ol3-sidebar.js"
   ],
   "keywords": [
     "gis",
