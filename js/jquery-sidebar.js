@@ -19,7 +19,7 @@ $.fn.sidebar = function(options) {
 
     $sidebar.addClass('sidebar-' + options.position);
 
-    $tabs.children('li').children('a').on('click', function(e) {
+    $tabs.children('li').children('a[href^="#"]').on('click', function(e) {
         e.preventDefault();
         var $tab = $(this).closest('li');
 
