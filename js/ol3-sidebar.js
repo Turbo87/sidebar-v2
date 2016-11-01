@@ -4,7 +4,7 @@ ol.control.Sidebar = function (settings) {
         element: null,
         position: 'left'
     }, i, child;
-    
+
     this._options = Object.assign({}, defaults, settings);
 
     ol.control.Control.call(this, {
@@ -17,7 +17,7 @@ ol.inherits(ol.control.Sidebar, ol.control.Control);
 
 ol.control.Sidebar.prototype.setMap = function(map) {
     var _this = this;
-    
+
     // Wire up listeners etc. and store reference to new map
     //ol.control.Control.prototype.setMap.call(this, map);
 
@@ -32,7 +32,7 @@ ol.control.Sidebar.prototype.setMap = function(map) {
             this._container = child;
         }
     }
-    
+
     function tabClick(e) {
         e = e || window.event;
         e.preventDefault();
@@ -42,7 +42,7 @@ ol.control.Sidebar.prototype.setMap = function(map) {
             _this.open(this.hash.slice(1));
         }
     }
-    
+
     function closeClick(e) {
         e = e || window.event;
         e.preventDefault();
@@ -79,7 +79,7 @@ ol.control.Sidebar.prototype.setMap = function(map) {
 
 ol.control.Sidebar.prototype.open = function(id) {
     var i, child;
-    
+
     // hide old active contents and show new content
     for (i = this._panes.length - 1; i >= 0; i--) {
         child = this._panes[i];
