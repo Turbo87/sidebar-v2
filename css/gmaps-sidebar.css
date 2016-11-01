@@ -9,8 +9,8 @@
     width: 40px; }
   @media (min-width: 768px) {
     .sidebar {
-      top: 15px;
-      bottom: 15px;
+      top: 10px;
+      bottom: 10px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
@@ -26,13 +26,13 @@
   left: 0; }
   @media (min-width: 768px) {
     .sidebar-left {
-      left: 15px; } }
+      left: 10px; } }
 
 .sidebar-right {
   right: 0; }
   @media (min-width: 768px) {
     .sidebar-right {
-      right: 15px; } }
+      right: 10px; } }
 
 .sidebar-tabs {
   top: 0;
@@ -148,13 +148,16 @@
       margin-right: 0; } }
 
 .sidebar {
-  border-right: 1pt solid rgba(127, 127, 127, 0.3);
-  box-shadow: 1px 3px 4px -2px rgba(0, 0, 0, 0.35); }
+  border-right: 0;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; }
   @media (min-width: 768px) {
     .sidebar {
-      border: 1pt solid rgba(127, 127, 127, 0.3);
-      border-radius: 4px;
-      bottom: 35px; } }
+      border: 0;
+      border-radius: 2px; } }
+
+@media (min-width: 768px) {
+  .sidebar-left {
+    bottom: 35px; } }
 
 @media (min-width: 768px) {
   .sidebar-left ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
@@ -162,36 +165,40 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar-left ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
-    margin-left: 320px !important; } }
+    margin-left: 325px !important; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .sidebar-left ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
-    margin-left: 405px !important; } }
+    margin-left: 410px !important; } }
 
 @media (min-width: 1200px) {
   .sidebar-left ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
-    margin-left: 475px !important; } }
+    margin-left: 480px !important; } }
 
 @media (min-width: 768px) {
   .sidebar-left.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
-    margin-left: 55px !important; } }
+    margin-left: 60px !important; } }
 
 @media (min-width: 768px) {
-  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 0px"] {
+  .sidebar-right {
+    bottom: 24px; } }
+
+@media (min-width: 768px) {
+  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
     transition: margin-right 500ms; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 0px"] {
-    margin-right: 335px !important; } }
+  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+    margin-right: 325px !important; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 0px"] {
-    margin-right: 420px !important; } }
+  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+    margin-right: 410px !important; } }
 
 @media (min-width: 1200px) {
-  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 0px"] {
-    margin-right: 490px !important; } }
+  .sidebar-right ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+    margin-right: 480px !important; } }
 
 @media (min-width: 768px) {
-  .sidebar-right.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 0px"] {
-    margin-right: 70px !important; } }
+  .sidebar-right.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+    margin-right: 60px !important; } }
