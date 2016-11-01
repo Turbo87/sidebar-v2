@@ -149,7 +149,7 @@
 
 .sidebar {
   border-right: 0;
-  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; }
+  box-shadow: rgba(0, 0, 0, 0.298039) 0 1px 4px -1px; }
   @media (min-width: 768px) {
     .sidebar {
       border: 0;
