@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.4.0
+
+- fix `ol3` example map layer ([#77](https://github.com/Turbo87/sidebar-v2/pull/77))
+- leaflet: deprecate `removeFrom()` in favor of `remove()` ([#73](https://github.com/Turbo87/sidebar-v2/pull/73))
+- leaflet: allow non-tab links on the sidebar ([#87](https://github.com/Turbo87/sidebar-v2/pull/87))
+- leaflet: fix CDN location on example pages ([#94](https://github.com/Turbo87/sidebar-v2/pull/94))
+- ol3: move "scale-line" together with the zoom controls ([#93](https://github.com/Turbo87/sidebar-v2/pull/93))
+
 ## v0.3.0 (2016-01-19)
 
 - ol2: move scale line control too when sidebar opens/closes
