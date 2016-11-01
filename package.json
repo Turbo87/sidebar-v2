@@ -5,8 +5,8 @@
   "keywords": [
     "gis",
     "leaflet",
-    "openlayers",
-    "map"
+    "map",
+    "openlayers"
   ],
   "homepage": "https://github.com/turbo87/sidebar-v2",
   "bugs": "https://github.com/turbo87/sidebar-v2/issues",
@@ -15,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/turbo87/sidebar-v2.git"
+  },
+  "scripts": {
+    "test": "gulp lint"
   },
   "devDependencies": {
     "gulp": "~3.8.7",
@@ -27,8 +30,5 @@
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "~0.3.1",
     "gulp-zip": "~0.5.0"
-  },
-  "scripts": {
-    "test": "gulp lint"
   }
 }
