@@ -129,35 +129,39 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
      * @param {string} id - The id of the tab to show (without the # character)
      */
     open: function(id) {
-        var i, child;
+        // timeout to not conflict with 'close' function 
+        setTimeout(function(){ 
+            var i, child;
 
-        // hide old active contents and show new content
-        for (i = this._panes.length - 1; i >= 0; i--) {
-            child = this._panes[i];
-            if (child.id == id)
-                L.DomUtil.addClass(child, 'active');
-            else if (L.DomUtil.hasClass(child, 'active'))
-                L.DomUtil.removeClass(child, 'active');
-        }
+            // hide old active contents and show new content
+            for (i = this._panes.length - 1; i >= 0; i--) {
+                child = this._panes[i];
+                if (child.id == id)
+                    L.DomUtil.addClass(child, 'active');
+                else if (L.DomUtil.hasClass(child, 'active'))
+                    L.DomUtil.removeClass(child, 'active');
+            }
 
-        // remove old active highlights and set new highlight
-        for (i = this._tabitems.length - 1; i >= 0; i--) {
-            child = this._tabitems[i];
-            if (child.querySelector('a').hash == '#' + id)
-                L.DomUtil.addClass(child, 'active');
-            else if (L.DomUtil.hasClass(child, 'active'))
-                L.DomUtil.removeClass(child, 'active');
-        }
+            // remove old active highlights and set new highlight
+            for (i = this._tabitems.length - 1; i >= 0; i--) {
+                child = this._tabitems[i];
+                if (child.querySelector('a').hash == '#' + id)
+                    L.DomUtil.addClass(child, 'active');
+                else if (L.DomUtil.hasClass(child, 'active'))
+                    L.DomUtil.removeClass(child, 'active');
+            }
 
-        this.fire('content', { id: id });
+            this.fire('content', { id: id });
 
-        // open sidebar (if necessary)
-        if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
-            this.fire('opening');
-            L.DomUtil.removeClass(this._sidebar, 'collapsed');
-        }
+            // open sidebar (if necessary)
+            if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+                this.fire('opening');
+                L.DomUtil.removeClass(this._sidebar, 'collapsed');
+            }
 
-        return this;
+            return this;
+        }, 1)
+        
     },
 
     /**
