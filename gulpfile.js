@@ -31,12 +31,13 @@ gulp.task('lint:css', ['sass'], function() {
   return gulp.src('css/*sidebar.css')
     .pipe(csslint({
       'adjoining-classes': false,
+      'order-alphabetical': false,
       'box-sizing': false,
       'fallback-colors': false,
       'important': false,
       'regex-selectors': false,
     }))
-    .pipe(csslint.reporter());
+    .pipe(csslint.formatter());
 });
 
 // Minify JS + CSS
