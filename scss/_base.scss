@@ -98,6 +98,8 @@ $move-map-in-xs: true !default;
         margin: 0;
         padding: 0;
 
+        list-style-type: none;
+
         & > li {
             width: 100%;
             height: $tab-size;
