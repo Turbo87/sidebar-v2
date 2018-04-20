@@ -111,7 +111,8 @@ ol.control.Sidebar.prototype.close = function() {
     return this;
 };
 
-ol.control.Sidebar.prototype._onClick = function() {
+ol.control.Sidebar.prototype._onClick = function(evt) {
+    evt.preventDefault();
     if (this.classList.contains('active')) {
         this._sidebar.close();
     } else if (!this.classList.contains('disabled')) {
