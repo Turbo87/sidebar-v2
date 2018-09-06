@@ -83,9 +83,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  overflow-x: hidden;
-  overflow-y: auto; }
+  background-color: rgba(255, 255, 255, 0.95);}
   .sidebar-left .sidebar-content {
     left: 40px;
     right: 0; }
@@ -210,3 +208,18 @@
   .sidebar-right.collapsed ~ .sidebar-map .ol-attribution,
   .sidebar-right.collapsed ~ .sidebar-map .ol-full-screen {
     margin-right: 52px; } }
+
+.sidebar-inner {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  overflow:auto;}
+  .sidebar-left .sidebar-content {
+    left: 40px;
+    right: 0; }
+  .sidebar-right .sidebar-content {
+    left: 0;
+    right: 40px; }
+  .sidebar.collapsed > .sidebar-content {
+    overflow: hidden; }
