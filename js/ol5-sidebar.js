@@ -2,9 +2,9 @@
 import 'ol/ol.css';
 import '../css/ol3-sidebar.css';
 
-/**
-* Define a namespace for the application.
-*/
+// JS imports
+import { inherits } from 'ol/util.js';
+import Control from 'ol/control/Control';
 
 export default function Sidebar(settings) {
 
@@ -54,6 +54,8 @@ export default function Sidebar(settings) {
         }
     }
 };
+
+inherits(Sidebar, Control);
 
 Sidebar.prototype.setMap = function(map) {
     var i, child;
