@@ -21,8 +21,11 @@
     "type": "git",
     "url": "https://github.com/turbo87/sidebar-v2.git"
   },
+  "main": "./examples/ol5.js",
   "scripts": {
-    "test": "gulp lint"
+    "test": "gulp lint",
+    "start": "parcel ./examples/ol5.html",
+    "build": "parcel build --public-url ./ ./examples/ol5.html"
   },
   "devDependencies": {
     "gulp": "~3.9.1",
@@ -36,5 +39,8 @@
     "gulp-uglify": "~3.0.0",
     "gulp-zip": "~4.0.0",
     "jshint": "^2.9.5"
+  },
+  "dependencies": {
+    "ol": "^5.2.0"
   }
 }
