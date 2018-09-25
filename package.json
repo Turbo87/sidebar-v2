@@ -25,9 +25,10 @@
   "scripts": {
     "test": "gulp lint",
     "start": "parcel ./examples/ol5.html",
-    "build": "parcel build --public-url ./ ./examples/ol5.html"
+    "build": "parcel build --public-url ./ ./js/ol5-sidebar.js"
   },
   "devDependencies": {
+    "cssnano": "^4.1.3",
     "gulp": "~3.9.1",
     "gulp-clean": "~0.3.1",
     "gulp-concat": "~2.6.1",

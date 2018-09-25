@@ -1,132 +1,135 @@
-// CSS imports
-import 'ol/ol.css';
-import '../css/ol3-sidebar.css';
-
 // JS imports
-import { inherits } from 'ol/util.js';
 import Control from 'ol/control/Control';
 
-export default function Sidebar(settings) {
+export default class Sidebar extends Control {
 
-    var defaults = {
-        element: null,
-        position: 'left'
-    }, i, child;
+    constructor(opt_options) {
+        var options = opt_options || {};
 
-    this._options = Object.assign({}, defaults, settings);
+        var position = options.position ?
+            options.position : 'left';
 
-    Control.call(this, {
-        element: document.getElementById(this._options.element),
-        target: this._options.target
-    });
+        var element = options.element ?
+            options.element : null;
 
-    // Attach .sidebar-left/right class
-    this.element.classList.add('sidebar-' + this._options.position);
+        super({ element: document.getElementById(options.element), target: options.target});
 
-    // Find sidebar > div.sidebar-content
-    for (i = this.element.children.length - 1; i >= 0; i--) {
-        child = this.element.children[i];
-        if (child.tagName === 'DIV' &&
-                child.classList.contains('sidebar-content')) {
-            this._container = child;
+        // Attach .sidebar-left/right class
+        element.classList.add('sidebar-' + position);
+
+        // Find sidebar > div.sidebar-content
+        for (i = element.children.length - 1; i >= 0; i--) {
+            child = element.children[i];
+            if (child.tagName === 'DIV' &&
+                    child.classList.contains('sidebar-content')) {
+                this._container = child;
+            }
         }
-    }
 
-    // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
-    this._tabitems = this.element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
-    for (i = this._tabitems.length - 1; i >= 0; i--) {
-        this._tabitems[i]._sidebar = this;
-    }
+        // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
+        this._tabitems = element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            this._tabitems[i]._sidebar = this;
+        }
 
-    // Find sidebar > div.sidebar-content > div.sidebar-pane
-    this._panes = [];
-    this._closeButtons = [];
-    for (i = this._container.children.length - 1; i >= 0; i--) {
-        child = this._container.children[i];
-        if (child.tagName == 'DIV' &&
-                child.classList.contains('sidebar-pane')) {
-            this._panes.push(child);
+        // Find sidebar > div.sidebar-content > div.sidebar-pane
+        this._panes = [];
+        this._closeButtons = [];
+        for (i = this._container.children.length - 1; i >= 0; i--) {
+            child = this._container.children[i];
+            if (child.tagName == 'DIV' &&
+                    child.classList.contains('sidebar-pane')) {
+                this._panes.push(child);
 
-            var closeButtons = child.querySelectorAll('.sidebar-close');
-            for (var j = 0, len = closeButtons.length; j < len; j++) {
-                this._closeButtons.push(closeButtons[j]);
+                var closeButtons = child.querySelectorAll('.sidebar-close');
+                for (var j = 0, len = closeButtons.length; j < len; j++) {
+                    this._closeButtons.push(closeButtons[j]);
+                }
             }
         }
     }
-};
 
-inherits(Sidebar, Control);
+    /**
+    * Set the map instance the control is associated with.
+    * @param {ol.Map} map The map instance.
+    */
+    setMap(map) {
+        var i, child;
 
-Sidebar.prototype.setMap = function(map) {
-    var i, child;
-
-    for (i = this._tabitems.length - 1; i >= 0; i--) {
-        child = this._tabitems[i];
-        var sub = child.querySelector('a');
-        if (sub.hasAttribute('href') && sub.getAttribute('href').slice(0,1) == '#') {
-            sub.onclick = this._onClick.bind(child);
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            var sub = child.querySelector('a');
+            if (sub.hasAttribute('href') && sub.getAttribute('href').slice(0,1) == '#') {
+                sub.onclick = this._onClick.bind(child);
+            }
         }
-    }
 
-    for (i = this._closeButtons.length - 1; i >= 0; i--) {
-        child = this._closeButtons[i];
-        child.onclick = this._onCloseClick.bind(this);
-    }
-};
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            child.onclick = this._onCloseClick.bind(this);
+        }
+    };
 
-Sidebar.prototype.open = function(id) {
-    var i, child;
+    open(id) {
+        var i, child;
 
-    // hide old active contents and show new content
-    for (i = this._panes.length - 1; i >= 0; i--) {
-        child = this._panes[i];
-        if (child.id == id)
-            child.classList.add('active');
-        else if (child.classList.contains('active'))
-            child.classList.remove('active');
-    }
+        // hide old active contents and show new content
+        for (i = this._panes.length - 1; i >= 0; i--) {
+            child = this._panes[i];
+            if (child.id == id)
+                child.classList.add('active');
+            else if (child.classList.contains('active'))
+                child.classList.remove('active');
+        }
 
-    // remove old active highlights and set new highlight
-    for (i = this._tabitems.length - 1; i >= 0; i--) {
-        child = this._tabitems[i];
-        if (child.querySelector('a').hash == '#' + id)
-            child.classList.add('active');
-        else if (child.classList.contains('active'))
-            child.classList.remove('active');
-    }
+        // remove old active highlights and set new highlight
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            if (child.querySelector('a').hash == '#' + id)
+                child.classList.add('active');
+            else if (child.classList.contains('active'))
+                child.classList.remove('active');
+        }
 
-    // open sidebar (if necessary)
-    if (this.element.classList.contains('collapsed')) {
-        this.element.classList.remove('collapsed');
-    }
+        // open sidebar (if necessary)
+        if (this.element.classList.contains('collapsed')) {
+            this.element.classList.remove('collapsed');
+        }
 
-    return this;
-};
+        return this;
+    };
 
-Sidebar.prototype.close = function() {
-    // remove old active highlights
-    for (var i = this._tabitems.length - 1; i >= 0; i--) {
-        var child = this._tabitems[i];
-        if (child.classList.contains('active'))
-            child.classList.remove('active');
-    }
+    close() {
+        // remove old active highlights
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            if (child.classList.contains('active'))
+                child.classList.remove('active');
+        }
 
-    // close sidebar
-    if (!this.element.classList.contains('collapsed')) {
-        this.element.classList.add('collapsed');
-    }
+        // close sidebar
+        if (!this.element.classList.contains('collapsed')) {
+            this.element.classList.add('collapsed');
+        }
 
-    return this;
-};
+        return this;
+    };
 
-Sidebar.prototype._onClick = function() {
-    if (this.classList.contains('active')) {
-        this._sidebar.close();
-    } else if (!this.classList.contains('disabled')) {
-        this._sidebar.open(this.querySelector('a').hash.slice(1));
-    }
-};
+    _onClick() {
+        if (this.classList.contains('active')) {
+            this._sidebar.close();
+        } else if (!this.classList.contains('disabled')) {
+            this._sidebar.open(this.querySelector('a').hash.slice(1));
+        }
+    };
 
-Sidebar.prototype._onCloseClick = function() {
-    this.close();
-};
+    _onCloseClick() {
+        this.close();
+    };
+}
+
+// Expose Sidebar as ol.control.Sidebar if using a full build of
+// OpenLayers
+if (window.ol && window.ol.control) {
+    window.ol.control.Sidebar = Sidebar;
+}
