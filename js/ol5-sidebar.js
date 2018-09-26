@@ -12,17 +12,19 @@ export default class Sidebar extends Control {
 
         var options = Object.assign({}, defaults, opt_options);
 
+        var element = document.getElementById(options.element);
+
         super({
-            element: document.getElementById(options.element),
+            element: element,
             target: options.target
         });
 
         // Attach .sidebar-left/right class
-        this.element.classList.add('sidebar-' + this.position);
+        element.classList.add('sidebar-' + options.position);
 
         // Find sidebar > div.sidebar-content
-        for (i = this.element.children.length - 1; i >= 0; i--) {
-            child = this.element.children[i];
+        for (i = element.children.length - 1; i >= 0; i--) {
+            child = element.children[i];
             if (child.tagName === 'DIV' &&
                     child.classList.contains('sidebar-content')) {
                 this._container = child;
@@ -30,7 +32,7 @@ export default class Sidebar extends Control {
         }
 
         // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
-        this._tabitems = this.element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        this._tabitems = element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             this._tabitems[i]._sidebar = this;
         }
@@ -57,7 +59,6 @@ export default class Sidebar extends Control {
     * @param {ol.Map} map The map instance.
     */
     setMap(map) {
-		super.setMap(map);
         var i, child;
 
         for (i = this._tabitems.length - 1; i >= 0; i--) {
@@ -119,11 +120,12 @@ export default class Sidebar extends Control {
         return this;
     };
 
-    _onClick() {
+    _onClick(evt) {
+        evt.preventDefault();
         if (this.classList.contains('active')) {
             this._sidebar.close();
         } else if (!this.classList.contains('disabled')) {
-            Sidebar.open(this.querySelector('a').hash.slice(1));
+            this._sidebar.open(this.querySelector('a').hash.slice(1));
         }
     };
 
