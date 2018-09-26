@@ -119,12 +119,12 @@ export default class Sidebar extends Control {
         if (this.classList.contains('active')) {
             this._sidebar.close();
         } else if (!this.classList.contains('disabled')) {
-            this._sidebar.open(this.querySelector('a').hash.slice(1));
+            Sidebar.open(this.querySelector('a').hash.slice(1));
         }
     };
 
     _onCloseClick() {
-        this.close();
+        Sidebar.close();
     };
 }
 

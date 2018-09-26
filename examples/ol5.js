@@ -1,23 +1,12 @@
-// CSS imports
-import 'ol/ol.css';
-import '../css/ol3-sidebar.css';
-
-// JS imports
-import Map from 'ol/Map';
-import View from 'ol/View';
-import LayerTile from 'ol/layer/Tile';
-import SourceOSM from 'ol/source/OSM';
-import { transform } from 'ol/proj.js';
-
-var map = new Map({
+var map = new ol.Map({
     layers: [
-        new LayerTile({
-            source: new SourceOSM()
+        new ol.layer.Tile({
+            source: new ol.source.OSM()
         })
     ],
     target: 'map',
-    view: new View({
-        center: transform([7, 51.2], 'EPSG:4326', 'EPSG:3857'),
+    view: new ol.View({
+        center: ol.proj.transform([7, 51.2], 'EPSG:4326', 'EPSG:3857'),
         zoom: 4,
     })
 });
