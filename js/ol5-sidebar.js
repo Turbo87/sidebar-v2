@@ -4,22 +4,25 @@ import Control from 'ol/control/Control';
 export default class Sidebar extends Control {
 
     constructor(opt_options) {
-        var options = opt_options || {};
 
-        var position = options.position ?
-            options.position : 'left';
+        var defaults = {
+            element: null,
+            position: 'left'
+        }, i, child;
 
-        var element = options.element ?
-            options.element : null;
+        var options = Object.assign({}, defaults, opt_options);
 
-        super({ element: document.getElementById(options.element), target: options.target});
+        super({
+            element: document.getElementById(options.element),
+            target: options.target
+        });
 
         // Attach .sidebar-left/right class
-        element.classList.add('sidebar-' + position);
+        this.element.classList.add('sidebar-' + this.position);
 
         // Find sidebar > div.sidebar-content
-        for (i = element.children.length - 1; i >= 0; i--) {
-            child = element.children[i];
+        for (i = this.element.children.length - 1; i >= 0; i--) {
+            child = this.element.children[i];
             if (child.tagName === 'DIV' &&
                     child.classList.contains('sidebar-content')) {
                 this._container = child;
@@ -27,7 +30,7 @@ export default class Sidebar extends Control {
         }
 
         // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
-        this._tabitems = element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        this._tabitems = this.element.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
         for (i = this._tabitems.length - 1; i >= 0; i--) {
             this._tabitems[i]._sidebar = this;
         }
