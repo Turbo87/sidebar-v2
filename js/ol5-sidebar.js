@@ -54,6 +54,7 @@ export default class Sidebar extends Control {
     * @param {ol.Map} map The map instance.
     */
     setMap(map) {
+		super.setMap(map);
         var i, child;
 
         for (i = this._tabitems.length - 1; i >= 0; i--) {
