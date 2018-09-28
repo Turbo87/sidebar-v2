@@ -130,7 +130,7 @@ export default class Sidebar extends Control {
     };
 
     _onCloseClick() {
-        Sidebar.close();
+        this.close();
     };
 }
 
