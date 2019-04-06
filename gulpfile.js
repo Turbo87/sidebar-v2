@@ -52,7 +52,7 @@ gulp.task('minify:js', function() {
 gulp.task('minify:css', gulp.series('sass', function() {
   return gulp.src('css/*sidebar.css')
     .pipe(rename({ suffix: '.min' }))
-    .pipe(cleanCSS())
+    .pipe(cleanCSS({level: 2}))
     .pipe(gulp.dest('css'));
 }));
 
