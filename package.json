@@ -25,16 +25,22 @@
     "test": "gulp lint"
   },
   "devDependencies": {
-    "gulp": "~3.9.1",
+    "gulp": "~4.0.0",
     "gulp-clean": "~0.3.1",
+    "gulp-clean-css": "~4.0.0",
     "gulp-concat": "~2.6.1",
-    "gulp-csslint": "~1.0.0",
+    "gulp-csslint": "~1.0.1",
+    "gulp-if": "^2.0.2",
     "gulp-jshint": "~2.0.4",
     "gulp-minify-css": "~1.2.4",
     "gulp-rename": "~1.2.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "~3.0.0",
     "gulp-zip": "~4.0.0",
-    "jshint": "^2.9.5"
+    "jshint": "^2.9.5",
+    "lazypipe": "^1.0.2",
+    "ol": "^5.3.2",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^5.2.1"
   }
 }
