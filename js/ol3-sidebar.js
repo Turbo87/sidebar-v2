@@ -47,7 +47,12 @@ ol.control.Sidebar = function (settings) {
     }
 };
 
-ol.inherits(ol.control.Sidebar, ol.control.Control);
+if ('inherits' in ol) {
+    ol.inherits(ol.control.Sidebar, ol.control.Control);
+} else {
+    ol.control.Sidebar.prototype = Object.create(ol.control.Control.prototype);
+    ol.control.Sidebar.prototype.constructor = ol.control.Sidebar;
+}
 
 ol.control.Sidebar.prototype.setMap = function(map) {
     var i, child;
