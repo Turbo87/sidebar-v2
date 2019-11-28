@@ -10,10 +10,10 @@
     "css/gmaps-sidebar.css",
     "css/leaflet-sidebar.css",
     "css/ol2-sidebar.css",
-    "css/ol3-sidebar.css",
+    "css/ol-sidebar.css",
     "js/jquery-sidebar.js",
     "js/leaflet-sidebar.js",
-    "js/ol3-sidebar.js"
+    "js/ol-sidebar.js"
   ],
   "keywords": [
     "gis",
