@@ -16,11 +16,11 @@ It is more or less a successor of the [leaflet-sidebar](https://github.com/turbo
 Example code at [`examples/index.html`](examples/index.html) ([Preview](http://turbo87.github.io/sidebar-v2/examples/index.html))
 
 
-## [OpenLayers 3](http://openlayers.org/)
+## [OpenLayers 3+](http://openlayers.org/)
 
-![Sidebar collapsed](doc/ol3-1.png) ![Sidebar extended](doc/ol3-2.png)
+![Sidebar collapsed](doc/ol-1.png) ![Sidebar extended](doc/ol-2.png)
 
-Example code at [`examples/ol3.html`](examples/ol3.html) ([Preview](http://turbo87.github.io/sidebar-v2/examples/ol3.html))
+Example code at [`examples/ol.html`](examples/ol.html) ([Preview](http://turbo87.github.io/sidebar-v2/examples/ol.html))
 
 
 ## [OpenLayers 2](http://openlayers.org/two/)
