@@ -1,3 +1,10 @@
+// detect jsdom environment
+// borrowed from: https://github.com/jsdom/jsdom/issues/1537
+var ol;
+if (navigator.userAgent.includes("Node.js") || navigator.userAgent.includes("jsdom")) {
+  ol = require('openlayers');
+}
+
 ol.control.Sidebar = function (settings) {
 
     var defaults = {
