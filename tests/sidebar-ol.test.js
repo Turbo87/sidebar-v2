@@ -32,3 +32,26 @@ describe('Simple sidebar object instantiation', function() {
   });
 });
 
+describe('Check sidebar configurations', function() {
+  test('Minimal sidebar structure contains expected elements', function() {
+    document.body.innerHTML =
+      '<div id="sidebar" class="sidebar collapsed">' +
+      '  <div class="sidebar-tabs">' +
+      '    <ul>' +
+      '      <li>single item</li>' +
+      '    </ul>' +
+      '  </div>' +
+      '  <div class="sidebar-content">' +
+      '    <div class="sidebar-pane">' +
+      '      <span class="sidebar-close"></span>' +
+      '    </div>' +
+      '  </div>' +
+      '</div>' +
+      '<div id="map" class="sidebar-map"></div>';
+    var sidebar = new ol.control.Sidebar({ element: 'sidebar' });
+
+    expect(sidebar._tabitems.length).toBe(1);
+    expect(sidebar._panes.length).toBe(1);
+    expect(sidebar._closeButtons.length).toBe(1);
+  });
+});
