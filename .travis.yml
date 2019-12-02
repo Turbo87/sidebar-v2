@@ -12,6 +12,8 @@ before_install:
 
 install:
   - yarn install --no-lockfile
+  - yarn add openlayers@^3
 
 script:
+  - yarn lint
   - yarn test
