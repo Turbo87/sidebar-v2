@@ -16,4 +16,3 @@ install:
 script:
   - yarn lint:css
   - yarn lint:js
-  - yarn test
