@@ -22,9 +22,11 @@
     "url": "https://github.com/turbo87/sidebar-v2.git"
   },
   "scripts": {
+    "lint:js": "eslint . --cache",
     "test": "gulp lint"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
     "gulp": "~4.0.0",
     "gulp-clean-css": "~4.0.0",
     "gulp-concat": "~2.6.1",

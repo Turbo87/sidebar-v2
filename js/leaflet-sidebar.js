@@ -1,3 +1,5 @@
+/* global L */
+
 /**
  * @name Sidebar
  * @class L.Control.Sidebar

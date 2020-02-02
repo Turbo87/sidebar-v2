@@ -1,3 +1,5 @@
+/* global ol */
+
 ol.control.Sidebar = function (settings) {
 
     var defaults = {
