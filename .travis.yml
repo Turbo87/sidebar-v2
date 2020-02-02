@@ -16,3 +16,9 @@ install:
 script:
   - yarn lint:css
   - yarn lint:js
+
+  # build the processed/minified assets
+  - yarn gulp
+
+  # check that they results match the committed state
+  - git diff --exit-code
