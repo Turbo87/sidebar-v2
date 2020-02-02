@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var csslint = require('gulp-csslint');
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
@@ -16,21 +15,6 @@ gulp.task('sass', function() {
         .on('error', sass.logError)
         .pipe(gulp.dest('css'));
 });
-
-gulp.task('lint:css', gulp.series('sass', function() {
-  return gulp.src('css/*sidebar.css')
-    .pipe(csslint({
-      'adjoining-classes': false,
-      'order-alphabetical': false,
-      'box-sizing': false,
-      'fallback-colors': false,
-      'important': false,
-      'regex-selectors': false,
-    }))
-    .pipe(csslint.formatter());
-}));
-
-gulp.task('lint', gulp.parallel('lint:css'));
 
 // Minify JS + CSS
 gulp.task('minify:js', function() {
@@ -65,10 +49,10 @@ gulp.task('zip', gulp.series('minify', function() {
 }));
 
 // Watch JS + CSS Files
-gulp.task('watch', gulp.series('lint', 'minify', function() {
+gulp.task('watch', gulp.series('minify', function() {
   gulp.watch('js/*.js', ['minify:js']);
-  gulp.watch('scss/*.scss', ['lint:css', 'minify:css']);
+  gulp.watch('scss/*.scss', ['minify:css']);
 }));
 
 // Default
-gulp.task('default', gulp.series('lint', 'minify'));
+gulp.task('default', gulp.series('minify'));
