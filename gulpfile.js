@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var csslint = require('gulp-csslint');
-var jshint = require('gulp-jshint');
 var cleanCSS = require('gulp-clean-css');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
@@ -18,13 +17,6 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('css'));
 });
 
-// Lint JS + CSS
-gulp.task('lint:js', function() {
-  return gulp.src('js/*sidebar.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter());
-});
-
 gulp.task('lint:css', gulp.series('sass', function() {
   return gulp.src('css/*sidebar.css')
     .pipe(csslint({
@@ -38,7 +30,7 @@ gulp.task('lint:css', gulp.series('sass', function() {
     .pipe(csslint.formatter());
 }));
 
-gulp.task('lint', gulp.parallel('lint:js', 'lint:css'));
+gulp.task('lint', gulp.parallel('lint:css'));
 
 // Minify JS + CSS
 gulp.task('minify:js', function() {
@@ -74,7 +66,7 @@ gulp.task('zip', gulp.series('minify', function() {
 
 // Watch JS + CSS Files
 gulp.task('watch', gulp.series('lint', 'minify', function() {
-  gulp.watch('js/*.js', ['lint:js', 'minify:js']);
+  gulp.watch('js/*.js', ['minify:js']);
   gulp.watch('scss/*.scss', ['lint:css', 'minify:css']);
 }));
 
