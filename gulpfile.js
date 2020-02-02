@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var clean = require('gulp-clean');
 var csslint = require('gulp-csslint');
 var jshint = require('gulp-jshint');
 var cleanCSS = require('gulp-clean-css');
