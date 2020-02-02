@@ -1,3 +1,5 @@
+/* global $ */
+
 /**
  * Create a new sidebar on this jQuery object.
  *
