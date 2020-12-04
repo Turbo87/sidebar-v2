@@ -1,5 +1,5 @@
 {
-  "name": "sidebar-v2",
+  "name": "leaflet-tabsidebar",
   "version": "0.4.1",
   "description": "A responsive sidebar for mapping libraries like Leaflet or OpenLayers",
   "keywords": [
