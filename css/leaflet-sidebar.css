@@ -20,7 +20,8 @@
       width: 390px; } }
   @media (min-width: 1200px) {
     .sidebar {
-      width: 460px; } }
+      /*width: 460;*/
+      width: 660px; } }
 
 .sidebar-left {
   left: 0; }
@@ -85,7 +86,9 @@
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.95);
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-overflow-scrolling: touch; }
   .sidebar-left .sidebar-content {
     left: 40px;
     right: 0; }
