@@ -84,7 +84,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.98);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-transform: translate3d(0,0,0);
